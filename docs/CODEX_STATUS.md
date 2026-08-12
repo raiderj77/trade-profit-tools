@@ -2,7 +2,7 @@
 
 ## Current state
 
-The MVP is code-complete and locally QA-verified on `main` as of August 11, 2026. Launch remains blocked on the owner-supplied email, payment, and Resend settings plus separately authorized Vercel and DNS work. The calculator remains a separate project from the existing Your Friendly Developer website.
+The MVP is code-complete, locally QA-verified, published on GitHub `main`, and verified by GitHub Actions as of August 11, 2026. Launch remains blocked on the owner-supplied email, payment, and Resend settings plus separately authorized Vercel and DNS work. The calculator remains a separate project from the existing Your Friendly Developer website.
 
 ## Work completed in this pass
 
@@ -27,6 +27,8 @@ The MVP is code-complete and locally QA-verified on `main` as of August 11, 2026
 - Replaced the low-contrast focus outline with a high-contrast double-ring focus indicator.
 - Removed the forced 320-pixel body minimum and allowed extreme result values to wrap without clipping.
 - Reduced GitHub Actions permissions to read-only and made dependency installation deterministic with `npm ci`.
+- Regenerated the lockfile with the workflow's npm 10 toolchain after reproducing and fixing its transitive Sharp dependency mismatch.
+- Updated the official checkout and Node setup actions to their current Node 24-based major versions, removing the runner deprecation annotation.
 
 ## Automated verification
 
@@ -36,9 +38,20 @@ The MVP is code-complete and locally QA-verified on `main` as of August 11, 2026
   - TypeScript: pass with strict checking.
   - ESLint: pass with no warnings or errors.
   - Next.js 16.3.0 production build: pass.
-- `npm audit --omit=dev --audit-level=high`: 0 vulnerabilities.
+- `npx npm@10.9.3 ci --no-audit --no-fund` and the full `npm run check`: pass with the GitHub runner's npm major.
+- `npm ci --no-audit --no-fund`: pass again with npm 11.6.2 using the same corrected lockfile.
+- Full and production-only `npm audit --audit-level=high`: 0 vulnerabilities.
 - `git diff --check`: pass.
 - Production routes generated successfully: `/`, `/demo`, `/embed`, `/privacy`, `/api/leads`, `/robots.txt`, `/sitemap.xml`, and `/icon`.
+- GitHub Actions `Verify MVP` run `31568695038`: pass on commit `ce671aea94f75462e778edb7b50a94cf704a4258`.
+
+## Repository publication verified
+
+- Public repository: `https://github.com/raiderj77/trade-profit-tools`.
+- Default branch: `main`.
+- Local `HEAD`, local `origin/main`, and the GitHub API commit matched at publication verification commit `ce671aea94f75462e778edb7b50a94cf704a4258`.
+- Compared every tracked path against GitHub's recursive tree: 51 local files, 51 GitHub files, and 0 differences.
+- The repository changed from empty to populated, and the clean GitHub runner completed install, tests, generated route types, strict TypeScript, ESLint, and the production build.
 
 ## Manual browser and API verification
 
@@ -75,16 +88,15 @@ The MVP is code-complete and locally QA-verified on `main` as of August 11, 2026
 
 ## Remaining launch items
 
-1. Confirm the pushed `main` commit and its GitHub Actions result.
-2. Provide the real public contact email.
-3. Provide the Stripe Payment Link.
-4. Verify `yourfriendlydeveloper.com` as a Resend sender domain and provide the API key, verified `LEAD_FROM_EMAIL`, and receiving `LEAD_TO_EMAIL`.
-5. Run real delivery tests for both public forms after Resend configuration.
-6. With explicit deployment authorization, create and link the separate `trade-profit-tools` Vercel project, connect the GitHub repository, and add the confirmed environment variables.
-7. Deploy to a generated Vercel URL and verify it before assigning a custom hostname.
-8. With explicit domain and DNS authorization, attach only `calculator.yourfriendlydeveloper.com` and add only its required DNS record. Do not alter the apex, `www`, or nameservers.
-9. Add a link from the existing main website only after the calculator is live and a separate main-site change is authorized.
-10. Replace the text mark only if a final logo is supplied.
+1. Provide the real public contact email.
+2. Provide the Stripe Payment Link.
+3. Verify `yourfriendlydeveloper.com` as a Resend sender domain and provide the API key, verified `LEAD_FROM_EMAIL`, and receiving `LEAD_TO_EMAIL`.
+4. Run real delivery tests for both public forms after Resend configuration.
+5. With explicit deployment authorization, create and link the separate `trade-profit-tools` Vercel project, connect the GitHub repository, and add the confirmed environment variables.
+6. Deploy to a generated Vercel URL and verify it before assigning a custom hostname.
+7. With explicit domain and DNS authorization, attach only `calculator.yourfriendlydeveloper.com` and add only its required DNS record. Do not alter the apex, `www`, or nameservers.
+8. Add a link from the existing main website only after the calculator is live and a separate main-site change is authorized.
+9. Replace the text mark only if a final logo is supplied.
 
 ## Accepted residual controls
 
@@ -93,4 +105,4 @@ The MVP is code-complete and locally QA-verified on `main` as of August 11, 2026
 
 ## Next smallest task
 
-After `main` and its verification workflow are confirmed on GitHub, obtain the real email, payment, and Resend values. Then create a separate Vercel project and verify a generated deployment URL before making any custom-domain or DNS change.
+Obtain the real email, payment, and Resend values. Then, with separate deployment authorization, create an isolated Vercel project and verify a generated deployment URL before making any custom-domain or DNS change.
