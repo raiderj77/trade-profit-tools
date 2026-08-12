@@ -1,4 +1,9 @@
 export const siteConfig = {
+  deployment: {
+    siteUrl:
+      process.env.NEXT_PUBLIC_SITE_URL ??
+      "https://calculator.yourfriendlydeveloper.com",
+  },
   business: {
     name: "Your Friendly Developer",
     shortName: "YFD",
@@ -15,7 +20,11 @@ export const siteConfig = {
   demoAgency: {
     name: "Summit Home Service Marketing",
     shortName: "Summit Growth",
+    mark: "SG",
     tagline: "Turn lead-flow numbers into a clear growth conversation.",
+  },
+  forms: {
+    recipientName: "Your Friendly Developer",
   },
   offer: {
     totalPrice: 1000,

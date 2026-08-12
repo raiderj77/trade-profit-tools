@@ -43,7 +43,7 @@ This repository is intentionally not a multi-tenant SaaS product.
 
 ```bash
 cp .env.example .env.local
-npm install
+npm ci
 npm run dev
 ```
 
@@ -82,7 +82,7 @@ NEXT_PUBLIC_PAYMENT_LINK
 
 ## Checks
 
-The current suite includes 18 unit tests covering formulas, input limits, and lead validation.
+The current suite includes 22 unit tests covering formulas, input limits, lead validation, email number formatting, and delivery idempotency.
 
 ```bash
 npm run test
@@ -99,7 +99,7 @@ npm run check
 
 ## Deploy
 
-Push the repository to GitHub and import it into Vercel. The included GitHub Actions workflow installs dependencies, runs the full check command, and creates the first lockfile after a successful verification. Add the environment variables in the Vercel project settings. Connect `calculator.yourfriendlydeveloper.com` using the exact DNS records Vercel supplies. See `docs/DOMAIN_AND_BRAND.md` and `docs/DEPLOYMENT.md`.
+Push the repository to GitHub and import it into a separate Vercel project. The committed lockfile and included GitHub Actions workflow use `npm ci` and run the full check command. Add the environment variables in the Vercel project settings. Connect only `calculator.yourfriendlydeveloper.com` using the exact DNS record Vercel supplies; leave the apex website and `www` unchanged. See `docs/DOMAIN_AND_BRAND.md` and `docs/DEPLOYMENT.md`.
 
 ## Project direction
 

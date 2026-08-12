@@ -13,7 +13,7 @@ Status: included in starter package.
 
 ## Phase 1, sellable MVP
 
-Status: included and locally hardened. Remote dependency verification remains.
+Status: included, locally hardened, and verified with installed dependencies.
 
 - Your Friendly Developer sales page.
 - Contractor calculator demo.
@@ -30,14 +30,13 @@ Status: included and locally hardened. Remote dependency verification remains.
 
 Codex tasks:
 
-1. Let GitHub Actions install dependencies and create `package-lock.json`.
-2. Confirm the full remote check passes.
-3. Fix any build, type, lint, or test errors reported by the workflow.
-4. Complete manual QA on mobile and desktop.
-5. Test Resend delivery with a verified sender.
-6. Deploy the project to Vercel.
-7. Connect `calculator.yourfriendlydeveloper.com`.
-8. Update `docs/CODEX_STATUS.md`.
+1. Push the verified `main` branch and committed `package-lock.json`.
+2. Confirm the full GitHub Actions check passes.
+3. Add the owner-confirmed contact, payment, and Resend configuration.
+4. Test Resend delivery with a verified sender.
+5. Create a separate Vercel project and verify a generated deployment URL.
+6. Connect only `calculator.yourfriendlydeveloper.com` after explicit domain and DNS authorization.
+7. Complete live production QA and update `docs/CODEX_STATUS.md`.
 
 Jason tasks:
 

@@ -5,8 +5,7 @@ import { siteConfig } from "@/config/site";
 
 import "./globals.css";
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+const siteUrl = siteConfig.deployment.siteUrl;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

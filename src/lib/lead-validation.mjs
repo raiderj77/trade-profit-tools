@@ -45,8 +45,8 @@ function cleanCalculatorInputs(value) {
       return null;
     }
 
-    const number = Number(value[key]);
-    if (!Number.isFinite(number)) {
+    const number = value[key];
+    if (typeof number !== "number" || !Number.isFinite(number)) {
       return null;
     }
 
@@ -75,7 +75,8 @@ function validateLeadPayload(value) {
   const source = cleanText(value.source, 200);
   const consent = value.consent === true;
   const honeypot = cleanText(value.website, 200);
-  const startedAt = Number(value.startedAt);
+  const startedAt =
+    typeof value.startedAt === "number" ? value.startedAt : Number.NaN;
 
   if (!name || !company || !EMAIL_PATTERN.test(email)) {
     return { ok: false, error: "Enter a valid name, work email, and company." };

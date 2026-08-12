@@ -48,7 +48,7 @@ export default function HomePage() {
               <p className="eyebrow">A custom sales tool from {siteConfig.business.name}</p>
               <h1>Give contractor prospects a financial reason to contact your agency.</h1>
               <p className="hero-lede">
-                Add a white-label calculator that estimates lead value, missed-call revenue, break-even CPL, and conversion upside. Your team receives the completed prospect form. Your Friendly Developer handles the custom build and installation.
+                Add a white-label calculator that estimates lead value, missed-call revenue, break-even CPL, and conversion upside. Your team receives the completed prospect form. {siteConfig.business.name} handles the custom build and installation.
               </p>
               <div className="button-row">
                 <Link className="button button-primary" href="/demo">

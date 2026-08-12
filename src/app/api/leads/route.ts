@@ -1,6 +1,6 @@
-import { createHash } from "node:crypto";
-
+import { siteConfig } from "@/config/site";
 import { calculateLeadValue } from "@/lib/calculator.mjs";
+import { createSubmissionKey, formatNumberRecord } from "@/lib/lead-email.mjs";
 import { validateLeadPayload } from "@/lib/lead-validation.mjs";
 
 export const runtime = "nodejs";
@@ -24,39 +24,9 @@ function json(message: string, status = 200) {
   );
 }
 
-function labelForKey(key: string): string {
-  return key
-    .replace(/([A-Z])/g, " $1")
-    .replace(/^./, (character) => character.toUpperCase());
-}
-
-function formatNumberRecord(values: object): string {
-  const entries = Object.entries(values) as Array<[string, number]>;
-  if (entries.length === 0) {
-    return "None";
-  }
-
-  return entries
-    .map(([key, value]) => `${labelForKey(key)}: ${value}`)
-    .join("\n");
-}
-
-function createSubmissionKey(lead: {
-  intent: string;
-  email: string;
-  company: string;
-  startedAt: number;
-}): string {
-  const digest = createHash("sha256")
-    .update(`${lead.intent}|${lead.email}|${lead.company}|${lead.startedAt}`)
-    .digest("hex");
-
-  return `lead-${digest}`;
-}
-
 function configuredOrigins(): Set<string> {
   const origins = new Set<string>();
-  const configuredSiteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+  const configuredSiteUrl = siteConfig.deployment.siteUrl;
   const vercelUrl = process.env.VERCEL_URL;
 
   for (const value of [
@@ -97,7 +67,8 @@ export async function POST(request: Request) {
   }
 
   const contentType = request.headers.get("content-type") ?? "";
-  if (!contentType.toLowerCase().includes("application/json")) {
+  const mediaType = contentType.split(";", 1)[0].trim().toLowerCase();
+  if (mediaType !== "application/json") {
     return json("Invalid submission format.", 415);
   }
 
@@ -122,6 +93,16 @@ export async function POST(request: Request) {
     rawPayload = JSON.parse(bodyText);
   } catch {
     return json("Invalid submission.", 400);
+  }
+
+  if (
+    typeof rawPayload === "object" &&
+    rawPayload !== null &&
+    !Array.isArray(rawPayload) &&
+    typeof (rawPayload as Record<string, unknown>).website === "string" &&
+    (rawPayload as Record<string, string>).website.trim()
+  ) {
+    return json("Thanks. Your request was received.");
   }
 
   const validation = validateLeadPayload(rawPayload);

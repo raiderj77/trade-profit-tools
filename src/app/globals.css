@@ -46,7 +46,6 @@
   }
 
   body {
-    min-width: 320px;
     background: var(--canvas);
     color: var(--ink);
     font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -87,7 +86,8 @@
   }
 
   :focus-visible {
-    outline: 3px solid var(--accent);
+    outline: 3px solid #fff;
+    box-shadow: 0 0 0 6px var(--brand-dark);
   }
 
   .skip-link {
@@ -211,7 +211,7 @@
     overflow: hidden;
     padding: clamp(4rem, 9vw, 8rem) 0;
     background:
-      radial-gradient(circle at 85% 15%, rgb(21 94 239 / 18%), transparent 30rem),
+      radial-gradient(circle at 85% 15%, color-mix(in srgb, var(--brand) 18%, transparent), transparent 30rem),
       linear-gradient(180deg, #ffffff 0%, var(--canvas) 100%);
   }
 
@@ -285,7 +285,7 @@
   .button-primary {
     background: var(--brand);
     color: white;
-    box-shadow: 0 12px 28px rgb(21 94 239 / 24%);
+    box-shadow: 0 12px 28px color-mix(in srgb, var(--brand) 24%, transparent);
   }
 
   .button-primary:hover {
@@ -446,7 +446,7 @@
     height: 1.3rem;
     place-items: center;
     border-radius: 999px;
-    background: rgb(21 94 239 / 12%);
+    background: color-mix(in srgb, var(--brand) 12%, transparent);
     color: var(--brand);
     content: "✓";
     font-size: 0.76rem;
@@ -764,6 +764,7 @@
     font-family: Manrope, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     font-size: clamp(1.5rem, 3vw, 2.1rem);
     line-height: 1.2;
+    overflow-wrap: anywhere;
   }
 
   .result-card span {
@@ -774,7 +775,7 @@
   }
 
   .result-card.emphasis {
-    border-color: rgb(21 94 239 / 35%);
+    border-color: color-mix(in srgb, var(--brand) 35%, transparent);
     box-shadow: inset 0 3px 0 var(--brand);
   }
 
@@ -817,6 +818,13 @@
 
   .embed-header h1 {
     font-size: clamp(1.8rem, 5vw, 2.7rem);
+  }
+
+  .embed-disclosure {
+    max-width: 720px;
+    margin-top: 0.75rem;
+    color: var(--muted);
+    font-size: 0.9rem;
   }
 
   .demo-footer-inner {

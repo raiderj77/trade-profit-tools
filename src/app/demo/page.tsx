@@ -23,7 +23,7 @@ export default function DemoPage() {
         <div className="container demo-header-inner">
           <Link className="brand" href="/demo">
             <span className="brand-mark" aria-hidden="true">
-              SG
+              {siteConfig.demoAgency.mark}
             </span>
             <span>{siteConfig.demoAgency.shortName}</span>
           </Link>

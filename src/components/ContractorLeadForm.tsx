@@ -1,9 +1,10 @@
 "use client";
 
 import type { FormEvent } from "react";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import type { CalculatorInputs } from "@/lib/calculator.mjs";
+import { siteConfig } from "@/config/site";
 
 interface ContractorLeadFormProps {
   inputs: CalculatorInputs;
@@ -15,11 +16,15 @@ interface FormState {
 }
 
 export function ContractorLeadForm({ inputs }: ContractorLeadFormProps) {
-  const startedAt = useRef(Date.now());
+  const startedAt = useRef(0);
   const [state, setState] = useState<FormState>({
     status: "idle",
     message: "",
   });
+
+  useEffect(() => {
+    startedAt.current = Date.now();
+  }, []);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -83,10 +88,10 @@ export function ContractorLeadForm({ inputs }: ContractorLeadFormProps) {
     >
       <div>
         <p className="eyebrow">Next step</p>
-        <h3>Review the estimate with a home-service growth specialist</h3>
+        <h3>Review the estimate with {siteConfig.forms.recipientName}</h3>
         <p>
-          Send the numbers to the agency. They review assumptions and identify
-          the first conversion gap to test.
+          Send the numbers to {siteConfig.forms.recipientName}, who will review
+          the assumptions and identify the first conversion gap to test.
         </p>
       </div>
       <div className="form-grid">

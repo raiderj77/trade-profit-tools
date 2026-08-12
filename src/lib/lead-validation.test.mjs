@@ -74,7 +74,8 @@ test("requires consent", () => {
 });
 
 test("requires every calculator input for contractor results", () => {
-  const { grossMargin: _grossMargin, ...incompleteMetrics } = metrics;
+  const incompleteMetrics = { ...metrics };
+  delete incompleteMetrics.grossMargin;
   const result = validateLeadPayload({
     ...base,
     intent: "contractor-results",
@@ -112,6 +113,28 @@ test("rejects non-finite calculator values", () => {
     ...base,
     intent: "contractor-results",
     metrics: { ...metrics, monthlyAdSpend: Number.POSITIVE_INFINITY },
+  });
+
+  assert.equal(result.ok, false);
+});
+
+test("rejects calculator values that are not JSON numbers", () => {
+  for (const invalidValue of [null, true, "5", "", [], [5], {}]) {
+    const result = validateLeadPayload({
+      ...base,
+      intent: "contractor-results",
+      metrics: { ...metrics, websiteLeads: invalidValue },
+    });
+
+    assert.equal(result.ok, false);
+  }
+});
+
+test("rejects a submission timestamp that is not a JSON number", () => {
+  const result = validateLeadPayload({
+    ...base,
+    intent: "agency-preview",
+    startedAt: String(base.startedAt),
   });
 
   assert.equal(result.ok, false);
