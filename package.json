@@ -1,0 +1,31 @@
+{
+  "name": "yfd-home-service-lead-calculator",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Your Friendly Developer white-label lead value calculator for home-service marketing agencies.",
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test src/lib/*.test.mjs",
+    "check": "npm run test && npm run typecheck && npm run lint && npm run build"
+  },
+  "dependencies": {
+    "next": "16.2.11",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "16.2.11",
+    "typescript": "^5.8.3"
+  }
+}

@@ -1,0 +1,7 @@
+Open the attached project and read CODEX_START_HERE.md first. Then read AGENTS.md and every file in docs.
+
+Finish and verify the MVP under the existing Your Friendly Developer brand. Use yourfriendlydeveloper.com as the main brand website and prepare this separate project for calculator.yourfriendlydeveloper.com so the current site remains untouched.
+
+Install dependencies, create the lockfile, and run the tests, type check, lint check, and production build. Fix every failure without weakening checks or expanding the product into a SaaS, dashboard, subscription service, AI product, or multi-user platform.
+
+Verify the sales page, live demo, embed route, privacy page, calculator formulas, both lead forms, responsive behavior, accessibility, and security controls. Record all completed work and remaining inputs in docs/CODEX_STATUS.md.
