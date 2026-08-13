@@ -6,7 +6,10 @@ import { useEffect, useRef, useState } from "react";
 import type { CalculatorInputs } from "@/lib/calculator.mjs";
 import { siteConfig } from "@/config/site";
 
+import { LeadFormUnavailable } from "./LeadFormUnavailable";
+
 interface ContractorLeadFormProps {
+  enabled: boolean;
   inputs: CalculatorInputs;
 }
 
@@ -15,7 +18,10 @@ interface FormState {
   message: string;
 }
 
-export function ContractorLeadForm({ inputs }: ContractorLeadFormProps) {
+export function ContractorLeadForm({
+  enabled,
+  inputs,
+}: ContractorLeadFormProps) {
   const startedAt = useRef(0);
   const [state, setState] = useState<FormState>({
     status: "idle",
@@ -80,6 +86,10 @@ export function ContractorLeadForm({ inputs }: ContractorLeadFormProps) {
     }
   }
 
+  if (!enabled) {
+    return <LeadFormUnavailable />;
+  }
+
   return (
     <form
       className="lead-form result-lead-form"
@@ -130,7 +140,7 @@ export function ContractorLeadForm({ inputs }: ContractorLeadFormProps) {
           <input name="phone" type="tel" autoComplete="tel" maxLength={60} />
         </label>
       </div>
-      <label className="honeypot" aria-hidden="true">
+      <label className="honeypot" inert>
         Leave this field empty
         <input name="website" type="text" tabIndex={-1} autoComplete="off" />
       </label>

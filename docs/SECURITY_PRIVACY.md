@@ -39,7 +39,9 @@ The browser does not submit trusted result values. The server validates the calc
 - Limit both declared and measured request size to 30 KB.
 - Limit text length and remove control characters.
 - Ignore unexpected calculator fields and reject oversized top-level payloads.
-- Reject unapproved browser origins in production when an origin header is present.
+- Require an approved browser origin in production. The canonical calculator
+  origin, the current Vercel deployment origin, and the generated Vercel
+  project-production origin are allowed.
 - Reject implausibly fast, stale, or future-dated submissions.
 - Use a hidden honeypot field.
 - Use a Resend idempotency key to reduce duplicate email delivery.
@@ -57,9 +59,14 @@ The `/embed` route is intended for external agency websites. Do not add a global
 
 Before a high-traffic launch, restrict `frame-ancestors` to approved customer domains or deploy a separate customer instance.
 
-## Future anti-spam option
+## Provider rate limiting
 
-Add Cloudflare Turnstile or an edge rate limit only after real submission traffic shows the current controls are insufficient. Do not add either before there is evidence of abuse.
+The isolated Vercel calculator project applies a fixed-window WAF rule to
+`POST /api/leads`: five requests per 60 seconds per source IP, followed by a
+deny response. This distributed limit complements the application controls.
+
+Do not add CAPTCHA or another challenge unless real traffic shows the current
+controls are insufficient.
 
 ## Retention statement
 

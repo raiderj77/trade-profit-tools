@@ -3,6 +3,8 @@
 import type { FormEvent } from "react";
 import { useEffect, useRef, useState } from "react";
 
+import { LeadFormUnavailable } from "./LeadFormUnavailable";
+
 interface FormState {
   status: "idle" | "sending" | "success" | "error";
   message: string;
@@ -10,7 +12,11 @@ interface FormState {
 
 const initialState: FormState = { status: "idle", message: "" };
 
-export function AgencyPreviewForm() {
+interface AgencyPreviewFormProps {
+  enabled: boolean;
+}
+
+export function AgencyPreviewForm({ enabled }: AgencyPreviewFormProps) {
   const startedAt = useRef(0);
   const [state, setState] = useState<FormState>(initialState);
 
@@ -72,6 +78,10 @@ export function AgencyPreviewForm() {
     }
   }
 
+  if (!enabled) {
+    return <LeadFormUnavailable />;
+  }
+
   return (
     <form
       className="lead-form"
@@ -129,7 +139,7 @@ export function AgencyPreviewForm() {
           maxLength={300}
         />
       </label>
-      <label className="honeypot" aria-hidden="true">
+      <label className="honeypot" inert>
         Leave this field empty
         <input name="website" type="text" tabIndex={-1} autoComplete="off" />
       </label>

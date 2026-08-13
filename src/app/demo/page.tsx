@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { LeadValueCalculator } from "@/components/LeadValueCalculator";
 import { siteConfig } from "@/config/site";
+import { leadFormsEnabled } from "@/lib/lead-delivery.mjs";
 
 export const metadata: Metadata = {
   title: "Live calculator demo",
@@ -11,6 +12,8 @@ export const metadata: Metadata = {
 };
 
 export default function DemoPage() {
+  const formsEnabled = leadFormsEnabled(process.env);
+
   return (
     <main id="main-content" className="demo-page">
       <div className="demo-owner-bar">
@@ -43,7 +46,7 @@ export default function DemoPage() {
         </div>
       </section>
       <section className="container calculator-wrap">
-        <LeadValueCalculator />
+        <LeadValueCalculator formsEnabled={formsEnabled} />
       </section>
       <footer className="demo-footer">
         <div className="container demo-footer-inner">

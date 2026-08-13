@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { LeadValueCalculator } from "@/components/LeadValueCalculator";
 import { siteConfig } from "@/config/site";
+import { leadFormsEnabled } from "@/lib/lead-delivery.mjs";
 
 export const metadata: Metadata = {
   title: "Lead value calculator",
@@ -10,6 +11,8 @@ export const metadata: Metadata = {
 };
 
 export default function EmbedPage() {
+  const formsEnabled = leadFormsEnabled(process.env);
+
   return (
     <main id="main-content" className="embed-page">
       <header className="embed-header">
@@ -27,7 +30,7 @@ export default function EmbedPage() {
           </p>
         </div>
       </header>
-      <LeadValueCalculator />
+      <LeadValueCalculator formsEnabled={formsEnabled} />
     </main>
   );
 }

@@ -1,6 +1,11 @@
 import { siteConfig } from "@/config/site";
 import { calculateLeadValue } from "@/lib/calculator.mjs";
+import {
+  demoSubmissionsAllowed,
+  emailDeliveryConfigured,
+} from "@/lib/lead-delivery.mjs";
 import { createSubmissionKey, formatNumberRecord } from "@/lib/lead-email.mjs";
+import { originIsAllowed } from "@/lib/lead-request.mjs";
 import { validateLeadPayload } from "@/lib/lead-validation.mjs";
 
 export const runtime = "nodejs";
@@ -24,45 +29,16 @@ function json(message: string, status = 200) {
   );
 }
 
-function configuredOrigins(): Set<string> {
-  const origins = new Set<string>();
-  const configuredSiteUrl = siteConfig.deployment.siteUrl;
-  const vercelUrl = process.env.VERCEL_URL;
-
-  for (const value of [
-    configuredSiteUrl,
-    vercelUrl ? `https://${vercelUrl}` : "",
-  ]) {
-    if (!value) {
-      continue;
-    }
-
-    try {
-      origins.add(new URL(value).origin);
-    } catch {
-      // A malformed environment variable should not crash the form route.
-    }
-  }
-
-  return origins;
-}
-
-function originIsAllowed(request: Request): boolean {
-  if (process.env.NODE_ENV !== "production") {
-    return true;
-  }
-
-  const origin = request.headers.get("origin");
-  if (!origin) {
-    return true;
-  }
-
-  const allowed = configuredOrigins();
-  return allowed.has(origin);
-}
-
 export async function POST(request: Request) {
-  if (!originIsAllowed(request)) {
+  if (
+    !originIsAllowed({
+      nodeEnv: process.env.NODE_ENV,
+      origin: request.headers.get("origin"),
+      siteUrl: siteConfig.deployment.siteUrl,
+      vercelUrl: process.env.VERCEL_URL,
+      projectProductionUrl: process.env.VERCEL_PROJECT_PRODUCTION_URL,
+    })
+  ) {
     return json("This form request came from an unapproved site.", 403);
   }
 
@@ -135,12 +111,8 @@ export async function POST(request: Request) {
   const from = process.env.LEAD_FROM_EMAIL;
   const to = process.env.LEAD_TO_EMAIL;
 
-  if (!apiKey || !from || !to) {
-    const allowDemo =
-      process.env.NODE_ENV !== "production" &&
-      process.env.ALLOW_DEMO_SUBMISSIONS === "true";
-
-    if (allowDemo) {
+  if (!emailDeliveryConfigured(process.env)) {
+    if (demoSubmissionsAllowed(process.env)) {
       return json("Demo submission accepted. Configure Resend to deliver email.");
     }
 

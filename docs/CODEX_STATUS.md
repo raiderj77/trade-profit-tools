@@ -2,7 +2,88 @@
 
 ## Current state
 
-The MVP is code-complete, locally QA-verified, published on GitHub `main`, and verified by GitHub Actions as of August 12, 2026. Its separate Vercel project, Git connection, safe public URL settings, preview, and production build are ready. The generated Vercel project alias is a working technical preview, but public launch remains blocked on the owner-supplied email, payment, and Resend settings, successful real delivery tests, and the final calculator-only hostname/DNS assignment.
+The MVP is code-complete and safe to publish while payment and Resend remain unconfigured. The release candidate omits both public lead forms unless every required Resend delivery value is present, and it continues to omit the deposit button while no Stripe Payment Link exists. The working tree contains locally verified security, accessibility, and safe-launch changes that have not yet been committed, pushed, or deployed. A narrowly scoped Vercel WAF rate limit is active for the isolated calculator project, and the confirmed public contact email is configured for Production.
+
+## Local launch-hardening recheck, August 12, 2026
+
+- Re-read `CODEX_START_HERE.md`, `AGENTS.md`, and every file in `docs/` before editing.
+- Reconfirmed the canonical checkout, clean starting `main` branch, GitHub remote, public repository, Vercel identity, isolated project ID, framework preset, Node version, environment-variable names, and unattached calculator hostname without making an external change.
+- Reinstalled dependencies with `npm ci --no-audit --no-fund` from the committed lockfile.
+- Preserved the Next.js 16.3-generated agent-rules block in `AGENTS.md`; future code work must read the relevant bundled guide in `node_modules/next/dist/docs/`.
+- Required an approved `Origin` on every production lead request instead of accepting a missing origin. The canonical calculator origin, current Vercel deployment origin, and generated Vercel project-production origin are supported.
+- Added three unit tests for production, preview, generated-alias, and development origin behavior.
+- Added an explicit delivery-availability gate. Production pages omit both lead
+  forms until the Resend API key, verified sender, and recipient are all
+  configured; local demo mode remains available outside production.
+- Added a clear unavailable state that accepts no personal data and uses the
+  configured public email as the fallback contact method.
+- Marked both off-screen honeypot containers `inert` so their inputs cannot enter the accessibility tree or focus order.
+- `npm run check`: pass after the changes; 28 tests, strict TypeScript, ESLint, and the Next.js 16.3.0 production build all pass.
+- `npm audit --audit-level=high`: 0 vulnerabilities.
+- `git diff --check`: pass.
+- Rechecked `/`, `/demo`, `/embed`, and `/privacy` in a real browser at 320, 375, 768, 1024, and 1440 CSS pixels. Every route has one H1, no duplicate IDs, no unlabeled controls, no hidden-focus violation, and no horizontal overflow.
+- Rechecked the documented live-UI formula case: $375 estimated revenue, $150 estimated gross profit, $5 current CPL, displayed $8 break-even CPL after rounding, $125 unanswered-call loss, displayed $94 five-point lift after rounding, and 3.75x ROAS.
+- Rechecked both forms in local demo mode: success messages appeared and personal fields reset. Rechecked both with email delivery intentionally unconfigured: accessible error alerts appeared and user entries remained intact.
+- Rechecked production API handling for missing and unapproved origins, invalid media type, invalid email, implausibly fast submission, honeypot, missing Resend configuration, and oversized payload. Expected statuses were 403, 403, 415, 400, 400, 200, 503, and 413; every response used `Cache-Control: no-store`.
+- Rechecked production security headers and frame policy: `/`, `/demo`, and `/privacy` deny framing; `/embed` remains frameable; HSTS and `nosniff` remain present.
+- Rechecked key text/background contrast pairs. Ratios range from 5.01:1 to 11.19:1, meeting the WCAG AA threshold for normal text.
+- Reconfirmed that the generated Vercel alias and all four public routes return HTTP 200, the main Your Friendly Developer site remains HTTP 200, and `calculator.yourfriendlydeveloper.com` remains NXDOMAIN.
+- Verified the safe production build contains zero lead forms on `/`, `/demo`,
+  and `/embed`, while all eight calculator inputs remain usable on the demo and
+  embed routes.
+- Configured `NEXT_PUBLIC_CONTACT_EMAIL=jason@yourfriendlydeveloper.com` for
+  Production in the isolated calculator project. No secret value was exposed.
+- Activated Vercel WAF rule `rule_lead_form_rate_limit_T7IHy0` on only the
+  calculator project: exact path `/api/leads`, method `POST`, fixed 60-second
+  window, five requests per IP, deny when exceeded.
+- Verified the active WAF rule is valid and returns a Vercel mitigation response
+  after the threshold. No apex, `www`, nameserver, payment, email-delivery, or
+  calculator-hostname change was made at this stage.
+
+### Files changed locally in this recheck
+
+- `AGENTS.md`
+- `src/app/api/leads/route.ts`
+- `src/app/demo/page.tsx`
+- `src/app/embed/page.tsx`
+- `src/app/page.tsx`
+- `src/app/privacy/page.tsx`
+- `src/components/AgencyPreviewForm.tsx`
+- `src/components/ContractorLeadForm.tsx`
+- `src/components/LeadFormUnavailable.tsx`
+- `src/components/LeadValueCalculator.tsx`
+- `src/lib/lead-delivery.mjs`
+- `src/lib/lead-delivery.d.mts`
+- `src/lib/lead-delivery.test.mjs`
+- `src/lib/lead-request.mjs`
+- `src/lib/lead-request.d.mts`
+- `src/lib/lead-request.test.mjs`
+- `docs/SECURITY_PRIVACY.md`
+- `docs/CODEX_STATUS.md`
+- `README.md`
+
+### Exact remaining release inputs and actions
+
+1. Publish the locally verified hardening and safe-launch change, then pass
+   GitHub Actions and generated-alias regression checks.
+2. Configure the confirmed contact email for the release branch Preview target.
+3. Attach only `calculator.yourfriendlydeveloper.com`, add only the
+   Vercel-provided calculator DNS record, and leave the apex, `www`, and
+   nameservers unchanged.
+4. Complete live route, calculator, mobile, accessibility, security, and HTTPS
+   verification on the calculator hostname. Confirm the unavailable-form state
+   and direct email fallback are accurate.
+5. Separately obtain the final Stripe Payment Link. Until then, the deposit
+   button remains omitted.
+6. Separately obtain Resend access: verified `yourfriendlydeveloper.com`
+   sending domain, server-side API key, verified `LEAD_FROM_EMAIL`, and receiving
+   `LEAD_TO_EMAIL`.
+7. After Resend configuration, redeploy and run a real delivery test from each
+   public form before enabling form-based lead capture.
+
+The calculator code is release-ready for an honest public technical launch with
+email as the only contact path. Payment and form-based lead capture remain
+separate post-launch blockers.
 
 ## Work completed in this pass
 
@@ -84,7 +165,10 @@ The MVP is code-complete, locally QA-verified, published on GitHub `main`, and v
 - Linked only the canonical calculator checkout through ignored local `.vercel` metadata.
 - Connected only `https://github.com/raiderj77/trade-profit-tools.git`; the Vercel production branch is `main`.
 - Configured `NEXT_PUBLIC_SITE_URL=https://calculator.yourfriendlydeveloper.com` and `NEXT_PUBLIC_MAIN_SITE_URL=https://yourfriendlydeveloper.com` for Preview and Production.
-- Left `NEXT_PUBLIC_CONTACT_EMAIL`, `NEXT_PUBLIC_PAYMENT_LINK`, `RESEND_API_KEY`, `LEAD_FROM_EMAIL`, and `LEAD_TO_EMAIL` unset because real owner-confirmed values are not available. `ALLOW_DEMO_SUBMISSIONS` remains unset in Vercel.
+- Configured `NEXT_PUBLIC_CONTACT_EMAIL=jason@yourfriendlydeveloper.com` for
+  Production after owner authorization. `NEXT_PUBLIC_PAYMENT_LINK`,
+  `RESEND_API_KEY`, `LEAD_FROM_EMAIL`, and `LEAD_TO_EMAIL` remain unset;
+  `ALLOW_DEMO_SUBMISSIONS` remains unset in Vercel.
 - The first deployment attempt did not publish because the new project initially used Vercel's generic framework preset and expected a `public` output directory. Changed only the project preset to Next.js, then rebuilt successfully.
 - Verified ready preview deployment `dpl_BLVx8Bm7Xbi32HBsTnLuarTTmyUr` and ready staged production deployment `dpl_3ejDJ6gKZuLy4j5Y5PzFAesXVDgJ`.
 - Verified the staged deployment returns HTTP 200 for `/`, `/demo`, `/embed`, `/privacy`, `/robots.txt`, `/sitemap.xml`, and `/icon`.
@@ -98,21 +182,23 @@ The MVP is code-complete, locally QA-verified, published on GitHub `main`, and v
 - The exact isolated project, environment, Git, domain, and deployment sequence is documented in `docs/DEPLOYMENT.md`.
 - No calculator hostname, DNS record, apex route, `www` route, or nameserver was changed.
 
-## Remaining launch items
+## Remaining commercial-launch items
 
-1. Provide the real public contact email.
-2. Provide the Stripe Payment Link.
-3. Verify `yourfriendlydeveloper.com` as a Resend sender domain and provide the API key, verified `LEAD_FROM_EMAIL`, and receiving `LEAD_TO_EMAIL`.
-4. Run real delivery tests for both public forms after Resend configuration.
-5. After delivery works, attach only `calculator.yourfriendlydeveloper.com` and add only its required DNS record. Do not alter the apex, `www`, or nameservers.
-6. Add `NEXT_PUBLIC_CALCULATOR_URL=https://calculator.yourfriendlydeveloper.com` to the main-site Vercel project only after the live calculator passes final browser and form checks.
-7. Replace the text mark only if a final logo is supplied.
+1. Provide the Stripe Payment Link.
+2. Verify `yourfriendlydeveloper.com` as a Resend sender domain and provide the API key, verified `LEAD_FROM_EMAIL`, and receiving `LEAD_TO_EMAIL`.
+3. Run real delivery tests for both public forms after Resend configuration.
+4. Replace the text mark only if a final logo is supplied.
 
 ## Accepted residual controls
 
-- The MVP intentionally has no database, analytics, tracking cookies, rate limiter, or CAPTCHA.
-- The current honeypot, timing checks, validation, origin checks, and Resend idempotency reduce abuse but do not prevent all automated submissions. Add Turnstile or edge rate limiting only if real traffic demonstrates a need.
+- The MVP intentionally has no database, analytics, tracking cookies, or CAPTCHA.
+- The active Vercel WAF rule provides a distributed first layer in addition to
+  the application honeypot, timing checks, validation, origin checks, request
+  limits, and Resend idempotency. These controls reduce abuse but do not prove a
+  submitter is human.
 
 ## Next smallest task
 
-Obtain the real public email, Stripe Payment Link, and verified Resend values. Add them to Preview and Production, redeploy, and confirm both forms deliver before assigning the calculator hostname or changing DNS.
+Publish and deploy the safe-launch release, attach only the calculator hostname,
+and verify the public unavailable-form state. Add payment and Resend only when
+their real values are available, then redeploy and verify both deliveries.

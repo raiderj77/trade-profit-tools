@@ -6,6 +6,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { siteConfig } from "@/config/site";
 import { calculateLeadValue } from "@/lib/calculator.mjs";
 import { formatCurrency } from "@/lib/format";
+import { leadFormsEnabled } from "@/lib/lead-delivery.mjs";
 
 const deliverables = [
   "Agency branding and copy",
@@ -36,6 +37,7 @@ const steps = [
 
 export default function HomePage() {
   const paymentLink = process.env.NEXT_PUBLIC_PAYMENT_LINK;
+  const formsEnabled = leadFormsEnabled(process.env);
   const exampleResults = calculateLeadValue({ ...siteConfig.calculatorDefaults });
 
   return (
@@ -175,7 +177,7 @@ export default function HomePage() {
                 Send your agency details. The first response will include the next step for a short branded preview.
               </p>
             </div>
-            <AgencyPreviewForm />
+            <AgencyPreviewForm enabled={formsEnabled} />
           </div>
         </section>
 
