@@ -2,7 +2,7 @@
 
 ## Current state
 
-The MVP is code-complete and safe to publish while payment and Resend remain unconfigured. The release candidate omits both public lead forms unless every required Resend delivery value is present, and it continues to omit the deposit button while no Stripe Payment Link exists. The working tree contains locally verified security, accessibility, and safe-launch changes that have not yet been committed, pushed, or deployed. A narrowly scoped Vercel WAF rate limit is active for the isolated calculator project, and the confirmed public contact email is configured for Production.
+The calculator is code-complete and publicly available through its isolated Vercel project while payment and Resend remain unconfigured. The production build omits both public lead forms unless every required Resend delivery value is present, omits the deposit button while no Stripe Payment Link exists, and provides `jason@yourfriendlydeveloper.com` as the fallback. The release is merged to GitHub `main`, the latest production deployment is Ready, and a narrowly scoped Vercel WAF rule protects the lead endpoint. `calculator.yourfriendlydeveloper.com` is attached only to this project but remains NXDOMAIN until the owner adds the required Namecheap DNS record.
 
 ## Local launch-hardening recheck, August 12, 2026
 
@@ -40,7 +40,7 @@ The MVP is code-complete and safe to publish while payment and Resend remain unc
   after the threshold. No apex, `www`, nameserver, payment, email-delivery, or
   calculator-hostname change was made at this stage.
 
-### Files changed locally in this recheck
+### Files published in this recheck
 
 - `AGENTS.md`
 - `src/app/api/leads/route.ts`
@@ -64,21 +64,20 @@ The MVP is code-complete and safe to publish while payment and Resend remain unc
 
 ### Exact remaining release inputs and actions
 
-1. Publish the locally verified hardening and safe-launch change, then pass
-   GitHub Actions and generated-alias regression checks.
-2. Configure the confirmed contact email for the release branch Preview target.
-3. Attach only `calculator.yourfriendlydeveloper.com`, add only the
-   Vercel-provided calculator DNS record, and leave the apex, `www`, and
-   nameservers unchanged.
-4. Complete live route, calculator, mobile, accessibility, security, and HTTPS
-   verification on the calculator hostname. Confirm the unavailable-form state
-   and direct email fallback are accurate.
-5. Separately obtain the final Stripe Payment Link. Until then, the deposit
+1. In Namecheap Advanced DNS, add one `A` record with host `calculator` and
+   value `76.76.21.21`. Leave the apex, `www`, mail records, DKIM, DMARC, and
+   nameservers unchanged. Namecheap was signed out, so this record was not
+   added by Codex.
+2. After DNS propagates, complete the final HTTPS and route check on
+   `calculator.yourfriendlydeveloper.com`. The identical production build has
+   already passed route, calculator, mobile, accessibility, security, and
+   unavailable-form checks on the generated production alias.
+3. Separately obtain the final Stripe Payment Link. Until then, the deposit
    button remains omitted.
-6. Separately obtain Resend access: verified `yourfriendlydeveloper.com`
+4. Separately obtain Resend access: verified `yourfriendlydeveloper.com`
    sending domain, server-side API key, verified `LEAD_FROM_EMAIL`, and receiving
    `LEAD_TO_EMAIL`.
-7. After Resend configuration, redeploy and run a real delivery test from each
+5. After Resend configuration, redeploy and run a real delivery test from each
    public form before enabling form-based lead capture.
 
 The calculator code is release-ready for an honest public technical launch with
@@ -177,8 +176,10 @@ separate post-launch blockers.
 - The manual preview and staged-production deployment URLs remain team-authenticated under the existing deployment-protection setting.
 - The Git-connected `main` branch now deploys automatically. The generated project alias `https://trade-profit-tools.vercel.app` returns HTTP 200 for every public route listed above and retains the verified page/embed security-header split.
 - The generated alias is a technical preview only: a valid form request returns the intentional HTTP 503 with `Cache-Control: no-store` until Resend is configured. It is not linked from the main site or advertised as the live calculator.
-- Live DNS still shows `calculator.yourfriendlydeveloper.com` as NXDOMAIN. The calculator hostname is not assigned to any project.
-- Vercel reported the calculator subdomain would require `A calculator.yourfriendlydeveloper.com 76.76.21.21` after it is attached to the new calculator project.
+- Merged safe-launch pull request 3 after GitHub Actions and Vercel checks passed; GitHub `main` is at `139ec91`.
+- Verified Ready production deployment `dpl_HHKYr59o36auXN1jeKChQNTWYWH7` at `https://trade-profit-tools.vercel.app` and the generated project-production alias.
+- Verified the live production home and demo routes, calculator recalculation, absence of inactive lead/payment controls, and the direct fallback link to `jason@yourfriendlydeveloper.com`.
+- Attached only `calculator.yourfriendlydeveloper.com` to the isolated `trade-profit-tools` project. Live DNS still returns NXDOMAIN because Namecheap is signed out and the required `A calculator 76.76.21.21` record has not been added.
 - The exact isolated project, environment, Git, domain, and deployment sequence is documented in `docs/DEPLOYMENT.md`.
 - No calculator hostname, DNS record, apex route, `www` route, or nameserver was changed.
 
@@ -199,6 +200,6 @@ separate post-launch blockers.
 
 ## Next smallest task
 
-Publish and deploy the safe-launch release, attach only the calculator hostname,
-and verify the public unavailable-form state. Add payment and Resend only when
-their real values are available, then redeploy and verify both deliveries.
+Add `A calculator 76.76.21.21` in Namecheap Advanced DNS, wait for propagation,
+then verify the attached custom hostname. Add payment and Resend only when their
+real values are available, then redeploy and verify both form deliveries.
