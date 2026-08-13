@@ -101,7 +101,11 @@ const initialInputs: CalculatorInputs = {
   ...siteConfig.calculatorDefaults,
 };
 
-export function LeadValueCalculator() {
+interface LeadValueCalculatorProps {
+  formsEnabled: boolean;
+}
+
+export function LeadValueCalculator({ formsEnabled }: LeadValueCalculatorProps) {
   const [inputs, setInputs] = useState<CalculatorInputs>(initialInputs);
   const results = useMemo(() => calculateLeadValue(inputs), [inputs]);
 
@@ -239,7 +243,7 @@ export function LeadValueCalculator() {
         </p>
       </section>
 
-      <ContractorLeadForm inputs={inputs} />
+      <ContractorLeadForm enabled={formsEnabled} inputs={inputs} />
     </div>
   );
 }

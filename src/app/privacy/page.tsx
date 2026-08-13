@@ -32,10 +32,12 @@ export default function PrivacyPage() {
 
           <h2>How information is used</h2>
           <p>
-            Public-demo submissions are emailed to {siteConfig.forms.recipientName}
-            so they can respond. The submitter&apos;s email becomes the reply-to
-            address for the message. A customer deployment replaces this
-            destination with the purchasing agency&apos;s chosen email address.
+            When online forms are enabled, public-demo submissions are emailed
+            to {siteConfig.forms.recipientName} so they can respond. The
+            submitter&apos;s email becomes the reply-to address for the message. A
+            customer deployment replaces this destination with the purchasing
+            agency&apos;s chosen email address. Forms remain unavailable until
+            secure email delivery has been configured.
           </p>
 
           <h2>Storage</h2>

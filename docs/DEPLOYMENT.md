@@ -31,6 +31,11 @@ ALLOW_DEMO_SUBMISSIONS
 
 Use `ALLOW_DEMO_SUBMISSIONS=true` only for local development. Remove it or set it to `false` in Production.
 
+Production pages automatically omit both lead forms until `RESEND_API_KEY`,
+`LEAD_FROM_EMAIL`, and `LEAD_TO_EMAIL` are all present. The calculator remains
+usable and the configured public contact email is shown as the fallback. A
+missing Stripe Payment Link similarly omits the deposit button.
+
 ## Email setup
 
 1. Add `yourfriendlydeveloper.com` as a sending domain in Resend.

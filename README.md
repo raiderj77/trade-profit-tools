@@ -62,6 +62,9 @@ LEAD_TO_EMAIL
 ```
 
 The sender address must use a domain verified in Resend.
+Public forms are automatically omitted until all three delivery values are
+present. Local demo mode remains available with
+`ALLOW_DEMO_SUBMISSIONS=true` outside production.
 
 Public settings:
 
@@ -82,7 +85,9 @@ NEXT_PUBLIC_PAYMENT_LINK
 
 ## Checks
 
-The current suite includes 22 unit tests covering formulas, input limits, lead validation, email number formatting, and delivery idempotency.
+The current suite includes unit tests covering formulas, input limits, lead
+validation, form availability, origin checks, email number formatting, and
+delivery idempotency.
 
 ```bash
 npm run test
