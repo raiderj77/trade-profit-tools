@@ -2,7 +2,7 @@
 
 ## Phase 0, foundation
 
-Status: included in starter package.
+Status: included.
 
 - Next.js App Router project.
 - TypeScript strict mode.
@@ -11,7 +11,7 @@ Status: included in starter package.
 - Product documents and scope rules.
 - Your Friendly Developer brand and domain plan.
 
-## Phase 1, sellable MVP
+## Phase 1, sellable calculator MVP
 
 Status: included and locally hardened. Remote dependency verification remains.
 
@@ -26,18 +26,35 @@ Status: included and locally hardened. Remote dependency verification remains.
 - Privacy page.
 - Sitemap and robots rules.
 
+## Phase 1A, Opportunity Lab V1
+
+Status: implemented locally on August 13, 2026.
+
+- Opportunity index.
+- Opportunity detail pages.
+- Methodology page.
+- Ten-dimension score module.
+- Scoring tests.
+- Four original starter briefs.
+- Source records with checked dates.
+- Red-flag and proof-gate sections.
+- Homepage preview and navigation.
+- Sitemap coverage.
+- Manual, human-reviewed content workflow.
+
 ## Phase 2, verification and deployment
 
 Codex tasks:
 
-1. Let GitHub Actions install dependencies and create `package-lock.json`.
-2. Confirm the full remote check passes.
-3. Fix any build, type, lint, or test errors reported by the workflow.
-4. Complete manual QA on mobile and desktop.
-5. Test Resend delivery with a verified sender.
-6. Deploy the project to Vercel.
-7. Connect `calculator.yourfriendlydeveloper.com`.
-8. Update `docs/CODEX_STATUS.md`.
+1. Install dependencies and create `package-lock.json`.
+2. Run the complete `npm run check` command.
+3. Fix any build, type, lint, or test errors.
+4. Complete manual QA on calculator and Opportunity Lab routes.
+5. Recheck every opportunity source and claim.
+6. Test Resend delivery with a verified sender.
+7. Deploy the project to Vercel.
+8. Connect `calculator.yourfriendlydeveloper.com`.
+9. Update `docs/CODEX_STATUS.md`.
 
 Jason tasks:
 
@@ -74,4 +91,11 @@ Only after repeated buyer requests:
 - Agency analytics event hooks.
 - Additional result explanations.
 
-Each addition requires evidence from paid buyers. Do not build a self-service SaaS until manual installs sell repeatedly.
+Only after the Lab produces measurable business value:
+
+- More manually reviewed briefs.
+- A consent-based email digest.
+- A lightweight research intake form.
+- Read-only agent assistance for source collection and contradiction checks.
+
+Do not build a self-service SaaS, autonomous publishing system, or live scraping platform until manual work sells repeatedly.

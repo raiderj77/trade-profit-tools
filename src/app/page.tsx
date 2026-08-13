@@ -1,9 +1,11 @@
 import Link from "next/link";
 
 import { AgencyPreviewForm } from "@/components/AgencyPreviewForm";
+import { OpportunityCard } from "@/components/OpportunityCard";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { siteConfig } from "@/config/site";
+import { featuredOpportunities } from "@/data/opportunities";
 import { calculateLeadValue } from "@/lib/calculator.mjs";
 import { formatCurrency } from "@/lib/format";
 
@@ -202,6 +204,33 @@ export default function HomePage() {
                 <summary>Will it match my website?</summary>
                 <p>Yes. The build includes your agency name, colors, messaging, contact details, and one revision.</p>
               </details>
+            </div>
+          </div>
+        </section>
+
+        <section className="section">
+          <div className="container">
+            <div className="section-heading centered">
+              <p className="eyebrow">Opportunity Lab</p>
+              <h2>We research the next useful tool before we build it.</h2>
+              <p>
+                Each brief turns a sourced trend into a buyer, offer, score,
+                red-flag review, and 72-hour payment test. Strong ideas move
+                forward. Weak or risky ideas stay on hold.
+              </p>
+            </div>
+            <div className="opportunity-grid homepage-opportunity-grid">
+              {featuredOpportunities.map((opportunity) => (
+                <OpportunityCard
+                  opportunity={opportunity}
+                  key={opportunity.slug}
+                />
+              ))}
+            </div>
+            <div className="centered section-action">
+              <Link className="button button-secondary" href="/opportunities">
+                Browse the Opportunity Lab
+              </Link>
             </div>
           </div>
         </section>

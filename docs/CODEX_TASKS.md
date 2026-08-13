@@ -46,7 +46,22 @@ Acceptance criteria:
 - Contractor results are recalculated on the server.
 - Repeated delivery attempts reuse a Resend idempotency key.
 
-## Task 4, accessibility and responsive QA
+## Task 4, verify Opportunity Lab data
+
+Acceptance criteria:
+
+- Every opportunity has a unique slug.
+- Every score dimension is a whole number from 1 to 10.
+- The displayed total matches the score module.
+- Every material factual claim has a working source.
+- Published and checked dates appear.
+- The source supports the wording used.
+- Assumptions are labeled as assumptions.
+- Every brief includes honest red flags and a payment-based proof gate.
+- Regulated or security-sensitive ideas do not receive an unqualified build recommendation.
+- No copy reproduces another publisher's newsletter or paid research.
+
+## Task 5, accessibility and responsive QA
 
 Acceptance criteria:
 
@@ -58,23 +73,25 @@ Acceptance criteria:
 - Layout works at 320, 375, 768, 1024, and 1440 pixels.
 - No horizontal scroll.
 - Reduced-motion preferences are respected.
+- Opportunity score meters expose accessible values.
+- Source links and verdict badges remain readable on small screens.
 
-## Task 5, deployment readiness
+## Task 6, deployment readiness
 
 Acceptance criteria:
 
 - Seller brand is Your Friendly Developer.
 - Production target is `calculator.yourfriendlydeveloper.com`.
 - The main `yourfriendlydeveloper.com` site remains untouched unless its repository is supplied.
-
 - Environment variables are documented.
 - Vercel build succeeds.
 - Sitemap uses the production URL.
 - Metadata contains no fictional contact details after final configuration.
 - `/embed` works inside a basic iframe test page.
 - Form email includes source page, submitted values, and calculated results.
+- Opportunity index, methodology, and detail routes render as static public pages.
 
-## Task 6, final sales readiness
+## Task 7, final sales readiness
 
 Acceptance criteria:
 
@@ -84,3 +101,4 @@ Acceptance criteria:
 - No page promises guaranteed business results.
 - The branded-preview request takes less than one minute to complete.
 - The live demo reaches the first result without creating an account.
+- Opportunity Lab points visitors toward a small paid proof, not a large platform build.

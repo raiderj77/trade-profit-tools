@@ -1,5 +1,7 @@
 import type { MetadataRoute } from "next";
 
+import { opportunities } from "@/data/opportunities";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
@@ -14,6 +16,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
+    {
+      url: `${siteUrl}/opportunities`,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/opportunities/methodology`,
+      changeFrequency: "yearly",
+      priority: 0.5,
+    },
+    ...opportunities.map((opportunity) => ({
+      url: `${siteUrl}/opportunities/${opportunity.slug}`,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
     {
       url: `${siteUrl}/privacy`,
       changeFrequency: "yearly",

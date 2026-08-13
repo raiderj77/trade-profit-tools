@@ -2,7 +2,7 @@
   "name": "yfd-home-service-lead-calculator",
   "version": "0.1.0",
   "private": true,
-  "description": "Your Friendly Developer white-label lead value calculator for home-service marketing agencies.",
+  "description": "Your Friendly Developer home-service calculator and source-backed Opportunity Lab.",
   "engines": {
     "node": ">=20.9.0"
   },
