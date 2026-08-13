@@ -2,7 +2,7 @@
 
 ## Current state
 
-The MVP is code-complete, locally QA-verified, published on GitHub `main`, and verified by GitHub Actions as of August 11, 2026. Launch remains blocked on the owner-supplied email, payment, and Resend settings plus separately authorized Vercel and DNS work. The calculator remains a separate project from the existing Your Friendly Developer website.
+The MVP is code-complete, locally QA-verified, published on GitHub `main`, and verified by GitHub Actions as of August 12, 2026. Its separate Vercel project, Git connection, safe public URL settings, preview, and staged production build are ready. Public launch remains blocked on the owner-supplied email, payment, and Resend settings, successful real delivery tests, and the final calculator-only hostname/DNS assignment.
 
 ## Work completed in this pass
 
@@ -43,13 +43,13 @@ The MVP is code-complete, locally QA-verified, published on GitHub `main`, and v
 - Full and production-only `npm audit --audit-level=high`: 0 vulnerabilities.
 - `git diff --check`: pass.
 - Production routes generated successfully: `/`, `/demo`, `/embed`, `/privacy`, `/api/leads`, `/robots.txt`, `/sitemap.xml`, and `/icon`.
-- GitHub Actions `Verify MVP` run `31568695038`: pass on commit `ce671aea94f75462e778edb7b50a94cf704a4258`.
+- GitHub Actions `Verify MVP` run `31568817020`: pass on application commit `f35bafa8311fce683f34a3d7b68acbe7c4622f69`.
 
 ## Repository publication verified
 
 - Public repository: `https://github.com/raiderj77/trade-profit-tools`.
 - Default branch: `main`.
-- Local `HEAD`, local `origin/main`, and the GitHub API commit matched at publication verification commit `ce671aea94f75462e778edb7b50a94cf704a4258`.
+- Before this deployment record was added, local `HEAD`, local `origin/main`, and the GitHub API commit matched at application commit `f35bafa8311fce683f34a3d7b68acbe7c4622f69`.
 - Compared every tracked path against GitHub's recursive tree: 51 local files, 51 GitHub files, and 0 differences.
 - The repository changed from empty to populated, and the clean GitHub runner completed install, tests, generated route types, strict TypeScript, ESLint, and the production build.
 
@@ -74,17 +74,27 @@ The MVP is code-complete, locally QA-verified, published on GitHub `main`, and v
 - Seller: Your Friendly Developer.
 - Calculator target: `https://calculator.yourfriendlydeveloper.com`.
 - Main website: `https://yourfriendlydeveloper.com`.
-- The existing main website repository, Vercel project, apex record, `www` record, and nameservers were not changed.
+- The live main website remains healthy: the apex returns HTTP 200 and `www` redirects to it with HTTP 308.
+- Calculator preparation did not change the main website project, apex, `www`, DNS records, or nameservers.
 
-## Vercel preparation completed read-only
+## Vercel deployment preparation
 
 - Vercel CLI 50.40.0 is authenticated as `raiderj77-3751` under team `jasons-projects-534f08bb`.
-- The team currently has no `trade-profit-tools` Vercel project.
-- `yourfriendlydeveloper.com` is registered to the team but uses external DNS; the serving apex project could not be identified from the visible team project list.
-- Live DNS showed the apex at `76.76.21.21`, `www` at `cname.vercel-dns.com`, and `calculator.yourfriendlydeveloper.com` unconfigured.
+- Created the isolated `trade-profit-tools` project (`prj_ORwhwNbR9jODceU1P5rJoGyuPamF`) without attaching any custom hostname.
+- Linked only the canonical calculator checkout through ignored local `.vercel` metadata.
+- Connected only `https://github.com/raiderj77/trade-profit-tools.git`; the Vercel production branch is `main`.
+- Configured `NEXT_PUBLIC_SITE_URL=https://calculator.yourfriendlydeveloper.com` and `NEXT_PUBLIC_MAIN_SITE_URL=https://yourfriendlydeveloper.com` for Preview and Production.
+- Left `NEXT_PUBLIC_CONTACT_EMAIL`, `NEXT_PUBLIC_PAYMENT_LINK`, `RESEND_API_KEY`, `LEAD_FROM_EMAIL`, and `LEAD_TO_EMAIL` unset because real owner-confirmed values are not available. `ALLOW_DEMO_SUBMISSIONS` remains unset in Vercel.
+- The first deployment attempt did not publish because the new project initially used Vercel's generic framework preset and expected a `public` output directory. Changed only the project preset to Next.js, then rebuilt successfully.
+- Verified ready preview deployment `dpl_BLVx8Bm7Xbi32HBsTnLuarTTmyUr` and ready staged production deployment `dpl_3ejDJ6gKZuLy4j5Y5PzFAesXVDgJ`.
+- Verified the staged deployment returns HTTP 200 for `/`, `/demo`, `/embed`, `/privacy`, `/robots.txt`, `/sitemap.xml`, and `/icon`.
+- Verified `/`, `/demo`, and `/privacy` retain frame denial while `/embed` remains frameable on Vercel.
+- Verified the staged lead API intentionally returns HTTP 503 with `Cache-Control: no-store` while Resend is unconfigured; no fake or undeliverable success is shown.
+- Vercel's generated preview and staged-production URLs remain team-authenticated under the existing deployment-protection setting. No public calculator URL is being advertised as live.
+- Live DNS still shows `calculator.yourfriendlydeveloper.com` as NXDOMAIN. The calculator hostname is not assigned to any project.
 - Vercel reported the calculator subdomain would require `A calculator.yourfriendlydeveloper.com 76.76.21.21` after it is attached to the new calculator project.
 - The exact isolated project, environment, Git, domain, and deployment sequence is documented in `docs/DEPLOYMENT.md`.
-- No Vercel project, Git connection, deployment, environment variable, hostname, DNS record, apex route, `www` route, or nameserver was changed in this pass.
+- No calculator hostname, DNS record, apex route, `www` route, or nameserver was changed.
 
 ## Remaining launch items
 
@@ -92,11 +102,9 @@ The MVP is code-complete, locally QA-verified, published on GitHub `main`, and v
 2. Provide the Stripe Payment Link.
 3. Verify `yourfriendlydeveloper.com` as a Resend sender domain and provide the API key, verified `LEAD_FROM_EMAIL`, and receiving `LEAD_TO_EMAIL`.
 4. Run real delivery tests for both public forms after Resend configuration.
-5. With explicit deployment authorization, create and link the separate `trade-profit-tools` Vercel project, connect the GitHub repository, and add the confirmed environment variables.
-6. Deploy to a generated Vercel URL and verify it before assigning a custom hostname.
-7. With explicit domain and DNS authorization, attach only `calculator.yourfriendlydeveloper.com` and add only its required DNS record. Do not alter the apex, `www`, or nameservers.
-8. Add a link from the existing main website only after the calculator is live and a separate main-site change is authorized.
-9. Replace the text mark only if a final logo is supplied.
+5. After delivery works, attach only `calculator.yourfriendlydeveloper.com` and add only its required DNS record. Do not alter the apex, `www`, or nameservers.
+6. Add `NEXT_PUBLIC_CALCULATOR_URL=https://calculator.yourfriendlydeveloper.com` to the main-site Vercel project only after the live calculator passes final browser and form checks.
+7. Replace the text mark only if a final logo is supplied.
 
 ## Accepted residual controls
 
@@ -105,4 +113,4 @@ The MVP is code-complete, locally QA-verified, published on GitHub `main`, and v
 
 ## Next smallest task
 
-Obtain the real email, payment, and Resend values. Then, with separate deployment authorization, create an isolated Vercel project and verify a generated deployment URL before making any custom-domain or DNS change.
+Obtain the real public email, Stripe Payment Link, and verified Resend values. Add them to Preview and Production, redeploy, and confirm both forms deliver before assigning the calculator hostname or changing DNS.
