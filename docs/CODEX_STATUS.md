@@ -2,7 +2,7 @@
 
 ## Current state
 
-The calculator is code-complete and publicly available through its isolated Vercel project while payment and Resend remain unconfigured. The production build omits both public lead forms unless every required Resend delivery value is present, omits the deposit button while no Stripe Payment Link exists, and provides `jason@yourfriendlydeveloper.com` as the fallback. The release is merged to GitHub `main`, the latest production deployment is Ready, and a narrowly scoped Vercel WAF rule protects the lead endpoint. `calculator.yourfriendlydeveloper.com` is attached only to this project but remains NXDOMAIN until the owner adds the required Namecheap DNS record.
+The calculator is code-complete and live at `https://calculator.yourfriendlydeveloper.com` through its isolated Vercel project while payment and Resend remain unconfigured. The production build omits both public lead forms unless every required Resend delivery value is present, omits the deposit button while no Stripe Payment Link exists, and provides `jason@yourfriendlydeveloper.com` as the fallback. The release is merged to GitHub `main`, the latest production deployment is Ready, and a narrowly scoped Vercel WAF rule protects the lead endpoint.
 
 ## Local launch-hardening recheck, August 12, 2026
 
@@ -64,20 +64,12 @@ The calculator is code-complete and publicly available through its isolated Verc
 
 ### Exact remaining release inputs and actions
 
-1. In Namecheap Advanced DNS, add one `A` record with host `calculator` and
-   value `76.76.21.21`. Leave the apex, `www`, mail records, DKIM, DMARC, and
-   nameservers unchanged. Namecheap was signed out, so this record was not
-   added by Codex.
-2. After DNS propagates, complete the final HTTPS and route check on
-   `calculator.yourfriendlydeveloper.com`. The identical production build has
-   already passed route, calculator, mobile, accessibility, security, and
-   unavailable-form checks on the generated production alias.
-3. Separately obtain the final Stripe Payment Link. Until then, the deposit
+1. Separately obtain the final Stripe Payment Link. Until then, the deposit
    button remains omitted.
-4. Separately obtain Resend access: verified `yourfriendlydeveloper.com`
+2. Separately obtain Resend access: verified `yourfriendlydeveloper.com`
    sending domain, server-side API key, verified `LEAD_FROM_EMAIL`, and receiving
    `LEAD_TO_EMAIL`.
-5. After Resend configuration, redeploy and run a real delivery test from each
+3. After Resend configuration, redeploy and run a real delivery test from each
    public form before enabling form-based lead capture.
 
 The calculator code is release-ready for an honest public technical launch with
@@ -179,7 +171,12 @@ separate post-launch blockers.
 - Merged safe-launch pull request 3 after GitHub Actions and Vercel checks passed; GitHub `main` is at `139ec91`.
 - Verified Ready production deployment `dpl_HHKYr59o36auXN1jeKChQNTWYWH7` at `https://trade-profit-tools.vercel.app` and the generated project-production alias.
 - Verified the live production home and demo routes, calculator recalculation, absence of inactive lead/payment controls, and the direct fallback link to `jason@yourfriendlydeveloper.com`.
-- Attached only `calculator.yourfriendlydeveloper.com` to the isolated `trade-profit-tools` project. Live DNS still returns NXDOMAIN because Namecheap is signed out and the required `A calculator 76.76.21.21` record has not been added.
+- Attached only `calculator.yourfriendlydeveloper.com` to the isolated `trade-profit-tools` project.
+- Added only `A calculator 76.76.21.21` in Namecheap. The apex, `www`, MX, SPF, DKIM, DMARC, and nameservers were left unchanged.
+- Verified the authoritative Namecheap nameserver, Cloudflare DNS, and Google DNS all return `76.76.21.21` for the calculator hostname.
+- Verified HTTPS and HTTP 200 responses for `/`, `/demo`, `/embed`, `/privacy`, `/robots.txt`, `/sitemap.xml`, and `/icon` on the custom hostname. The non-embed pages deny framing, `/embed` remains frameable, and every route returns HSTS.
+- Verified the custom-domain production pages expose no inactive lead forms, provide the confirmed email fallback, and use the calculator hostname as their canonical URL.
+- Verified the custom-domain API rejects missing and wrong origins with 403, rejects the wrong media type with 415, returns generic no-store success for a honeypot request, and is denied by the project WAF after the configured threshold.
 - The exact isolated project, environment, Git, domain, and deployment sequence is documented in `docs/DEPLOYMENT.md`.
 - No calculator hostname, DNS record, apex route, `www` route, or nameserver was changed.
 
@@ -200,6 +197,5 @@ separate post-launch blockers.
 
 ## Next smallest task
 
-Add `A calculator 76.76.21.21` in Namecheap Advanced DNS, wait for propagation,
-then verify the attached custom hostname. Add payment and Resend only when their
-real values are available, then redeploy and verify both form deliveries.
+Add payment and Resend only when their real values are available, then redeploy
+and verify both form deliveries before enabling those controls.
