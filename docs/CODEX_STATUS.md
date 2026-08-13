@@ -2,7 +2,7 @@
 
 ## Current state
 
-The MVP is code-complete, locally QA-verified, published on GitHub `main`, and verified by GitHub Actions as of August 12, 2026. Its separate Vercel project, Git connection, safe public URL settings, preview, and staged production build are ready. Public launch remains blocked on the owner-supplied email, payment, and Resend settings, successful real delivery tests, and the final calculator-only hostname/DNS assignment.
+The MVP is code-complete, locally QA-verified, published on GitHub `main`, and verified by GitHub Actions as of August 12, 2026. Its separate Vercel project, Git connection, safe public URL settings, preview, and production build are ready. The generated Vercel project alias is a working technical preview, but public launch remains blocked on the owner-supplied email, payment, and Resend settings, successful real delivery tests, and the final calculator-only hostname/DNS assignment.
 
 ## Work completed in this pass
 
@@ -43,7 +43,7 @@ The MVP is code-complete, locally QA-verified, published on GitHub `main`, and v
 - Full and production-only `npm audit --audit-level=high`: 0 vulnerabilities.
 - `git diff --check`: pass.
 - Production routes generated successfully: `/`, `/demo`, `/embed`, `/privacy`, `/api/leads`, `/robots.txt`, `/sitemap.xml`, and `/icon`.
-- GitHub Actions `Verify MVP` run `31568817020`: pass on application commit `f35bafa8311fce683f34a3d7b68acbe7c4622f69`.
+- GitHub Actions `Verify MVP` run `31568817020`: pass on application commit `f35bafa8311fce683f34a3d7b68acbe7c4622f69`. Subsequent documentation-only publication checks also passed.
 
 ## Repository publication verified
 
@@ -90,7 +90,9 @@ The MVP is code-complete, locally QA-verified, published on GitHub `main`, and v
 - Verified the staged deployment returns HTTP 200 for `/`, `/demo`, `/embed`, `/privacy`, `/robots.txt`, `/sitemap.xml`, and `/icon`.
 - Verified `/`, `/demo`, and `/privacy` retain frame denial while `/embed` remains frameable on Vercel.
 - Verified the staged lead API intentionally returns HTTP 503 with `Cache-Control: no-store` while Resend is unconfigured; no fake or undeliverable success is shown.
-- Vercel's generated preview and staged-production URLs remain team-authenticated under the existing deployment-protection setting. No public calculator URL is being advertised as live.
+- The manual preview and staged-production deployment URLs remain team-authenticated under the existing deployment-protection setting.
+- The Git-connected `main` branch now deploys automatically. The generated project alias `https://trade-profit-tools.vercel.app` returns HTTP 200 for every public route listed above and retains the verified page/embed security-header split.
+- The generated alias is a technical preview only: a valid form request returns the intentional HTTP 503 with `Cache-Control: no-store` until Resend is configured. It is not linked from the main site or advertised as the live calculator.
 - Live DNS still shows `calculator.yourfriendlydeveloper.com` as NXDOMAIN. The calculator hostname is not assigned to any project.
 - Vercel reported the calculator subdomain would require `A calculator.yourfriendlydeveloper.com 76.76.21.21` after it is attached to the new calculator project.
 - The exact isolated project, environment, Git, domain, and deployment sequence is documented in `docs/DEPLOYMENT.md`.
