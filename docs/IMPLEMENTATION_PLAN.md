@@ -13,7 +13,7 @@ Status: included.
 
 ## Phase 1, sellable calculator MVP
 
-Status: included and locally hardened. Remote dependency verification remains.
+Status: included, locally hardened, and verified with installed dependencies.
 
 - Your Friendly Developer sales page.
 - Contractor calculator demo.
@@ -46,15 +46,14 @@ Status: implemented locally on August 13, 2026.
 
 Codex tasks:
 
-1. Install dependencies and create `package-lock.json`.
-2. Run the complete `npm run check` command.
-3. Fix any build, type, lint, or test errors.
-4. Complete manual QA on calculator and Opportunity Lab routes.
-5. Recheck every opportunity source and claim.
-6. Test Resend delivery with a verified sender.
-7. Deploy the project to Vercel.
-8. Connect `calculator.yourfriendlydeveloper.com`.
-9. Update `docs/CODEX_STATUS.md`.
+1. Keep the verified calculator release healthy on the existing Vercel project
+   and `calculator.yourfriendlydeveloper.com`.
+2. Publish Opportunity Lab through the existing GitHub and Vercel path.
+3. Confirm the full GitHub Actions and Vercel checks pass.
+4. Complete production QA on the calculator and Opportunity Lab routes.
+5. Add only owner-confirmed payment and Resend configuration.
+6. Test real Resend delivery with a verified sender before enabling forms.
+7. Update `docs/CODEX_STATUS.md` with verified production evidence.
 
 Jason tasks:
 

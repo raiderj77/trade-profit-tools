@@ -70,7 +70,7 @@ A later `lab.yourfriendlydeveloper.com` redirect or a move to the main website i
 
 ```bash
 cp .env.example .env.local
-npm install
+npm ci
 npm run dev
 ```
 
@@ -89,6 +89,9 @@ LEAD_TO_EMAIL
 ```
 
 The sender address must use a domain verified in Resend.
+Public forms are automatically omitted until all three delivery values are
+present. Local demo mode remains available with
+`ALLOW_DEMO_SUBMISSIONS=true` outside production.
 
 Public settings:
 
@@ -112,7 +115,9 @@ NEXT_PUBLIC_PAYMENT_LINK
 
 ## Checks
 
-The current suite includes 26 unit tests covering formulas, input limits, lead validation, and opportunity scoring.
+The current suite covers formulas, input limits, lead validation, opportunity
+scoring, form availability, origin checks, email number formatting, and
+delivery idempotency.
 
 ```bash
 npm run test
@@ -129,7 +134,10 @@ npm run check
 
 ## Deploy
 
-Push the repository to GitHub and import it into Vercel. Add the documented environment variables. Connect `calculator.yourfriendlydeveloper.com` using the exact DNS records Vercel supplies.
+This repository deploys through its separate Vercel project. The committed
+lockfile and GitHub Actions workflow use `npm ci` and the full check command.
+The application uses only `calculator.yourfriendlydeveloper.com`; leave the
+apex website and `www` unchanged.
 
 Read:
 

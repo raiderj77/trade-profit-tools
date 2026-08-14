@@ -33,6 +33,11 @@ ALLOW_DEMO_SUBMISSIONS
 
 Use `ALLOW_DEMO_SUBMISSIONS=true` only for local development. Remove it or set it to `false` in Production.
 
+Production pages automatically omit both lead forms until `RESEND_API_KEY`,
+`LEAD_FROM_EMAIL`, and `LEAD_TO_EMAIL` are all present. The calculator remains
+usable and the configured public contact email is shown as the fallback. A
+missing Stripe Payment Link similarly omits the deposit button.
+
 ## Email setup
 
 1. Add `yourfriendlydeveloper.com` as a sending domain in Resend.
@@ -61,6 +66,72 @@ After the main application works, optionally redirect:
 `lab.yourfriendlydeveloper.com` to `https://calculator.yourfriendlydeveloper.com/opportunities`
 
 Do this through Vercel or DNS-provider redirect settings when available. Do not add application complexity for an optional alias.
+
+## Verified Vercel preparation state
+
+Read-only inspection on August 11, 2026 found:
+
+- Vercel CLI 50.40.0 authenticated as `raiderj77-3751`.
+- Team: `jasons-projects-534f08bb`.
+- No existing Vercel project named `trade-profit-tools`.
+- The apex and `www` already point into Vercel infrastructure through external DNS.
+- `calculator.yourfriendlydeveloper.com` is currently unconfigured.
+- The apex serving project was not identifiable from the current team's visible project list.
+
+Treat project creation, Git connection, environment changes, deployments, hostname assignment, and DNS edits as separate external writes. Do not run them as part of a read-only preparation pass.
+
+After `main` is pushed and verified, the isolated CLI sequence is:
+
+```powershell
+# External write: create only the calculator project.
+vercel project add trade-profit-tools --scope jasons-projects-534f08bb
+
+# Local ignored metadata only: link this checkout.
+vercel link --yes `
+  --team jasons-projects-534f08bb `
+  --project trade-profit-tools
+
+# External write and deploy-capable: connect only this GitHub repository.
+vercel git connect https://github.com/raiderj77/trade-profit-tools.git `
+  --scope jasons-projects-534f08bb
+```
+
+Add confirmed public environment values to Production and Preview:
+
+```powershell
+vercel env add NEXT_PUBLIC_SITE_URL production `
+  --value "https://calculator.yourfriendlydeveloper.com" --yes
+vercel env add NEXT_PUBLIC_SITE_URL preview `
+  --value "https://calculator.yourfriendlydeveloper.com" --yes
+vercel env add NEXT_PUBLIC_MAIN_SITE_URL production `
+  --value "https://yourfriendlydeveloper.com" --yes
+vercel env add NEXT_PUBLIC_MAIN_SITE_URL preview `
+  --value "https://yourfriendlydeveloper.com" --yes
+```
+
+Add `NEXT_PUBLIC_CONTACT_EMAIL` and `NEXT_PUBLIC_PAYMENT_LINK` only after their real public values are confirmed. Add `RESEND_API_KEY` interactively with `--sensitive`; do not place it in command history. Add verified `LEAD_FROM_EMAIL` and `LEAD_TO_EMAIL` values. Leave `ALLOW_DEMO_SUBMISSIONS` unset or false in Production.
+
+For the first production verification, deploy without assigning the custom hostname:
+
+```powershell
+vercel deploy --prod --skip-domain `
+  --scope jasons-projects-534f08bb
+```
+
+Verify the generated Vercel URL before any hostname operation. Then, with explicit authorization, attach only the calculator subdomain:
+
+```powershell
+vercel domains add calculator.yourfriendlydeveloper.com trade-profit-tools `
+  --scope jasons-projects-534f08bb
+```
+
+Do not use `--force`. Vercel's current read-only inspection recommended this external DNS record after attachment:
+
+```text
+A calculator.yourfriendlydeveloper.com 76.76.21.21
+```
+
+Leave the apex A record, `www` CNAME, and nameservers unchanged.
 
 ## Existing-site route option
 

@@ -101,7 +101,11 @@ const initialInputs: CalculatorInputs = {
   ...siteConfig.calculatorDefaults,
 };
 
-export function LeadValueCalculator() {
+interface LeadValueCalculatorProps {
+  formsEnabled: boolean;
+}
+
+export function LeadValueCalculator({ formsEnabled }: LeadValueCalculatorProps) {
   const [inputs, setInputs] = useState<CalculatorInputs>(initialInputs);
   const results = useMemo(() => calculateLeadValue(inputs), [inputs]);
 
@@ -176,10 +180,12 @@ export function LeadValueCalculator() {
             const inputId = `calculator-${field.key}`;
             const helpId = `${inputId}-help`;
             return (
-              <label className="number-field" key={field.key} htmlFor={inputId}>
-                <span className="field-label">{field.label}</span>
+              <div className="number-field" key={field.key}>
+                <label className="field-label" htmlFor={inputId}>
+                  {field.label}
+                </label>
                 <span className="input-affix-wrap">
-                  {field.prefix ? <span className="input-affix prefix">{field.prefix}</span> : null}
+                  {field.prefix ? <span className="input-affix prefix" aria-hidden="true">{field.prefix}</span> : null}
                   <input
                     id={inputId}
                     name={field.key}
@@ -194,10 +200,10 @@ export function LeadValueCalculator() {
                     }
                     aria-describedby={helpId}
                   />
-                  {field.suffix ? <span className="input-affix suffix">{field.suffix}</span> : null}
+                  {field.suffix ? <span className="input-affix suffix" aria-hidden="true">{field.suffix}</span> : null}
                 </span>
                 <span className="field-help" id={helpId}>{field.help}</span>
-              </label>
+              </div>
             );
           })}
         </div>
@@ -237,7 +243,7 @@ export function LeadValueCalculator() {
         </p>
       </section>
 
-      <ContractorLeadForm inputs={inputs} />
+      <ContractorLeadForm enabled={formsEnabled} inputs={inputs} />
     </div>
   );
 }

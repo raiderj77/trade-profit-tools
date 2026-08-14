@@ -118,6 +118,28 @@ test("rejects non-finite calculator values", () => {
   assert.equal(result.ok, false);
 });
 
+test("rejects calculator values that are not JSON numbers", () => {
+  for (const invalidValue of [null, true, "5", "", [], [5], {}]) {
+    const result = validateLeadPayload({
+      ...base,
+      intent: "contractor-results",
+      metrics: { ...metrics, websiteLeads: invalidValue },
+    });
+
+    assert.equal(result.ok, false);
+  }
+});
+
+test("rejects a submission timestamp that is not a JSON number", () => {
+  const result = validateLeadPayload({
+    ...base,
+    intent: "agency-preview",
+    startedAt: String(base.startedAt),
+  });
+
+  assert.equal(result.ok, false);
+});
+
 test("removes control characters from submitted text", () => {
   const result = validateLeadPayload({
     ...base,

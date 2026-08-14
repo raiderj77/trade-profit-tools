@@ -8,6 +8,7 @@ import { siteConfig } from "@/config/site";
 import { featuredOpportunities } from "@/data/opportunities";
 import { calculateLeadValue } from "@/lib/calculator.mjs";
 import { formatCurrency } from "@/lib/format";
+import { leadFormsEnabled } from "@/lib/lead-delivery.mjs";
 
 const deliverables = [
   "Agency branding and copy",
@@ -38,6 +39,7 @@ const steps = [
 
 export default function HomePage() {
   const paymentLink = process.env.NEXT_PUBLIC_PAYMENT_LINK;
+  const formsEnabled = leadFormsEnabled(process.env);
   const exampleResults = calculateLeadValue({ ...siteConfig.calculatorDefaults });
 
   return (
@@ -50,7 +52,7 @@ export default function HomePage() {
               <p className="eyebrow">A custom sales tool from {siteConfig.business.name}</p>
               <h1>Give contractor prospects a financial reason to contact your agency.</h1>
               <p className="hero-lede">
-                Add a white-label calculator that estimates lead value, missed-call revenue, break-even CPL, and conversion upside. Your team receives the completed prospect form. Your Friendly Developer handles the custom build and installation.
+                Add a white-label calculator that estimates lead value, missed-call revenue, break-even CPL, and conversion upside. Your team receives the completed prospect form. {siteConfig.business.name} handles the custom build and installation.
               </p>
               <div className="button-row">
                 <Link className="button button-primary" href="/demo">
@@ -177,7 +179,7 @@ export default function HomePage() {
                 Send your agency details. The first response will include the next step for a short branded preview.
               </p>
             </div>
-            <AgencyPreviewForm />
+            <AgencyPreviewForm enabled={formsEnabled} />
           </div>
         </section>
 

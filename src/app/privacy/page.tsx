@@ -25,16 +25,19 @@ export default function PrivacyPage() {
           <h2>Information submitted</h2>
           <p>
             The form may include your name, work email, company, optional phone
-            number, optional website, and calculator inputs. The server
-            recalculates the estimate before including the results in the email.
+            number, optional website, optional home-service niches, source page,
+            and calculator inputs. The server recalculates the estimate before
+            including the results in the email.
           </p>
 
           <h2>How information is used</h2>
           <p>
-            Public-demo submissions are emailed to {siteConfig.business.name}
-            so the team can respond. The submitter&apos;s email becomes the reply-to
-            address for the message. A customer deployment replaces this
-            destination with the purchasing agency&apos;s chosen email address.
+            When online forms are enabled, public-demo submissions are emailed
+            to {siteConfig.forms.recipientName} so they can respond. The
+            submitter&apos;s email becomes the reply-to address for the message. A
+            customer deployment replaces this destination with the purchasing
+            agency&apos;s chosen email address. Forms remain unavailable until
+            secure email delivery has been configured.
           </p>
 
           <h2>Storage</h2>

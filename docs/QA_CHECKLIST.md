@@ -88,6 +88,8 @@
 - No failed network requests during normal use.
 - Test, typecheck, lint, and build pass.
 - Production environment variables exist.
+- Public pages omit lead forms when production email delivery is incomplete and
+  show an accurate unavailable notice instead.
 - Resend sender is verified.
 - Production form email arrives.
 - Production rejects an unapproved browser origin.
