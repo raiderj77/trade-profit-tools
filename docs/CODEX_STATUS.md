@@ -20,6 +20,8 @@ The calculator is code-complete and live at `https://calculator.yourfriendlydeve
 - The first reconciled GitHub Actions run exposed an npm 11 versus npm 10 lockfile mismatch involving optional native dependencies. Regenerated the lockfile with npm 10.9.3, added an explicit `packageManager` declaration, and verified clean install, all checks, and the audit with that npm version.
 - GitHub Actions run `31767735815` passed the clean install and full combined check on commit `85eee18`.
 - Vercel preview deployment `dpl_DvcjNEn54mnd9b1gnGbXCNNH3e4S` reached Ready. The calculator, privacy page, Opportunity Lab index, methodology, and all four briefs rendered from that exact deployment; the production-safe preview contained zero lead forms while Resend remains unconfigured.
+- Pull request 6 merged to `main` as `1f9f5c6`; GitHub Actions run `31767918099` passed and production deployment `dpl_2oi4pfLAr5PurLd7nuCTTVaVi1fs` reached Ready.
+- Production browser QA found the four footer links exceeded the effective 305-pixel content viewport on 320-pixel Chrome, creating horizontal scrolling on pages with the shared footer. A focused follow-up makes those links wrap while preserving the existing desktop layout.
 
 ## Local launch-hardening recheck, August 12, 2026
 
