@@ -18,6 +18,8 @@ The calculator is code-complete and live at `https://calculator.yourfriendlydeve
 - The Vercel preview check passed before GitHub identified that the branch needed the newer production commits merged into it.
 - Merged the current production branch without rebasing or force-pushing, preserved the production form-availability and origin controls, and expanded the combined suite to 36 passing tests.
 - The first reconciled GitHub Actions run exposed an npm 11 versus npm 10 lockfile mismatch involving optional native dependencies. Regenerated the lockfile with npm 10.9.3, added an explicit `packageManager` declaration, and verified clean install, all checks, and the audit with that npm version.
+- GitHub Actions run `31767735815` passed the clean install and full combined check on commit `85eee18`.
+- Vercel preview deployment `dpl_DvcjNEn54mnd9b1gnGbXCNNH3e4S` reached Ready. The calculator, privacy page, Opportunity Lab index, methodology, and all four briefs rendered from that exact deployment; the production-safe preview contained zero lead forms while Resend remains unconfigured.
 
 ## Local launch-hardening recheck, August 12, 2026
 
