@@ -1,7 +1,7 @@
 "use client";
 
 import type { FormEvent } from "react";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface FormState {
   status: "idle" | "sending" | "success" | "error";
@@ -11,8 +11,12 @@ interface FormState {
 const initialState: FormState = { status: "idle", message: "" };
 
 export function AgencyPreviewForm() {
-  const startedAt = useRef(Date.now());
+  const startedAt = useRef(0);
   const [state, setState] = useState<FormState>(initialState);
+
+  useEffect(() => {
+    startedAt.current = Date.now();
+  }, []);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();

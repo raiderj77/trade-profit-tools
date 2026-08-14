@@ -156,6 +156,8 @@ Do not promise more leads, revenue, profit, or sales. The calculator provides an
 
 ## Commercial proof gates
 
+These gates apply only after Jason explicitly approves the prospect list, message, sending mailbox, and outreach start. They are planning targets, not authorization to contact anyone.
+
 - Day 7: 40 delivered personal emails and at least two interested replies.
 - Day 14: 80 delivered emails and either four interested replies or one deposit.
 - Day 30: 150 delivered emails and at least one paying customer.

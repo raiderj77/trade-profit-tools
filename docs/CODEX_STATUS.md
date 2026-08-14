@@ -46,25 +46,32 @@ The calculator MVP and Opportunity Lab V1 are implemented locally on branch `age
 
 ## Validation completed locally
 
-- `npm run test`: 26 tests pass.
-- Formula behavior tests: pass.
-- Lead-validation tests: pass.
-- Opportunity-score tests: pass.
-- TypeScript parser check: pass for all TypeScript and TSX files.
-- Temporary framework-stub strict TypeScript check: pass.
-- Opportunity data strict TypeScript check: pass.
-- CSS parse check: pass.
+- The downloaded archive was verified as a readable Git repository. SHA-256: `ABC37CC3D0DFF2624BDCB7173901B677A742478EECC727FDF08C44D6CA52436A`.
+- `git fsck --full`: pass.
+- Reproducible clean install with the generated lockfile (`npm ci`): pass.
+- `npm run check`: pass on Next.js 16.3.1.
+- Automated tests: 26 pass.
+- Strict TypeScript check: pass.
+- ESLint with zero warnings: pass.
+- Production build: pass; 15 application routes generated.
+- `npm audit`: 0 known vulnerabilities.
+- Desktop browser QA: all calculator, privacy, embed, Opportunity Lab, methodology, detail, and not-found routes pass.
+- Responsive browser QA at 320, 375, 768, 1024, and 1440 CSS pixels: pass with no horizontal overflow.
+- Calculator recomputation: pass.
+- Lead-form validation and safe failure without Resend configuration: pass.
+- Browser console: no errors or warnings during the final route pass.
+- Robots, sitemap, canonical, and Open Graph URLs use the production calculator hostname rather than localhost.
+- Source claims were rechecked against the linked primary or first-party sources; overstated Jobber and IRS wording was corrected.
 
-## Full framework checks still required
+## Hardening completed
 
-The workspace timed out while installing npm dependencies. The real framework checks remain pending:
-
-- `npm run typecheck` with installed Next.js, React, and Node types.
-- `npm run lint`.
-- `npm run build`.
-- Browser QA.
-
-Do not report these checks as passed until Codex or GitHub Actions runs them with installed dependencies.
+- Updated Next.js and `eslint-config-next` from 16.2.11 to 16.3.1 to clear the dependency audit.
+- Fixed render-time clock access and lint failures in both lead forms.
+- Restored useful calculator navigation on narrow screens.
+- Added a validated production URL helper with a safe production fallback.
+- Reduced the GitHub Actions token to read-only and removed workflow self-commits.
+- Added explicit owner-approval gates for deployment, publishing, outreach, payment, accounts, secrets, domains, DNS, pushes, and pull requests.
+- Marked outreach and sales material as drafts rather than approved campaigns.
 
 ## GitHub state
 
@@ -77,17 +84,15 @@ Do not report these checks as passed until Codex or GitHub Actions runs them wit
 
 ## Remaining work
 
-1. Install dependencies in Codex or a network-enabled environment.
-2. Run `npm run check` and fix any real framework failures.
-3. Recheck every live source link and source wording.
-4. Complete browser QA for all calculator and Lab routes.
-5. Commit and push `agent/add-opportunity-lab`.
-6. Open a draft pull request into `main`.
-7. Add the real public contact email.
-8. Add the Stripe Payment Link.
-9. Verify the sender domain in Resend and add the API key.
-10. Import the repository into Vercel.
-11. Connect `calculator.yourfriendlydeveloper.com`.
+1. Confirm the launch architecture. The current recommendation is to keep the calculator in its separate project at `calculator.yourfriendlydeveloper.com` for the first release and link to it from the main site.
+2. Review and approve the final local diff before any GitHub push or pull request.
+3. Add the real public contact email.
+4. Add the Stripe Payment Link.
+5. Verify the sender domain in Resend and add the API key.
+6. Run one successful end-to-end lead-delivery test after the Resend configuration is available.
+7. After approval, publish the reviewed branch through the existing Vercel project. The calculator hostname is currently healthy, but the Opportunity Lab routes are not yet deployed and return 404.
+8. Re-run the production checks after that release, including lead delivery and the Stripe path.
+9. Add or verify the approved calculator link on the main Your Friendly Developer site.
 
 ## Inputs still required from Jason
 
@@ -95,7 +100,7 @@ Do not report these checks as passed until Codex or GitHub Actions runs them wit
 - Receiving inbox for leads.
 - Resend API key and verified sender.
 - Stripe Payment Link.
-- Vercel and DNS access for the calculator subdomain.
+- Approval for the reviewed GitHub and Vercel release; the existing calculator subdomain does not currently need a DNS change.
 - Final logo only if the text mark is replaced.
 
 ## Work log
@@ -103,6 +108,8 @@ Do not report these checks as passed until Codex or GitHub Actions runs them wit
 ### August 13, 2026
 
 Added Opportunity Lab V1, four source-backed briefs, scoring and tests, methodology, research safety rules, responsive pages, navigation, sitemap coverage, and updated project documentation.
+
+Downloaded and independently verified the Codex-ready archive, installed real dependencies, generated the lockfile, cleared the security audit, fixed lint and browser defects, tightened CI and action gates, rechecked sources, and completed automated and browser QA. No push, pull request, deployment, DNS change, account configuration, outreach, publication, or payment action was performed.
 
 ### August 11, 2026
 

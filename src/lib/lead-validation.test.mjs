@@ -74,7 +74,8 @@ test("requires consent", () => {
 });
 
 test("requires every calculator input for contractor results", () => {
-  const { grossMargin: _grossMargin, ...incompleteMetrics } = metrics;
+  const incompleteMetrics = { ...metrics };
+  delete incompleteMetrics.grossMargin;
   const result = validateLeadPayload({
     ...base,
     intent: "contractor-results",

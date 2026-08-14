@@ -32,9 +32,9 @@ export default function PrivacyPage() {
           <h2>How information is used</h2>
           <p>
             Public-demo submissions are emailed to {siteConfig.business.name}
-            so the team can respond. The submitter's email becomes the reply-to
+            so the team can respond. The submitter&apos;s email becomes the reply-to
             address for the message. A customer deployment replaces this
-            destination with the purchasing agency's chosen email address.
+            destination with the purchasing agency&apos;s chosen email address.
           </p>
 
           <h2>Storage</h2>

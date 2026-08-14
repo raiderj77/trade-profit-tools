@@ -281,12 +281,12 @@ const opportunityDrafts = [
         checked: "August 13, 2026",
         sourceType: "Primary research",
         supports:
-          "Quote win-rate, response-time, pricing, and automation findings from a survey of 1,050 U.S. home-service owners plus aggregated platform data.",
+          "Quote win-rate, response-time, pricing, and automation findings from a survey of 1,050 U.S. home-service owners.",
       },
       {
         title: "Automations",
         publisher: "Jobber Help Center",
-        url: "https://help.getjobber.com/hc/en-us/articles/24244124296471-Automations",
+        url: "https://help.getjobber.com/en/articles/automations/",
         published: "Updated 2026",
         checked: "August 13, 2026",
         sourceType: "Official source",
@@ -323,7 +323,7 @@ const opportunityDrafts = [
     },
     tags: ["S corporations", "Bookkeeping", "Recurring", "Partner required"],
     signal: [
-      "The IRS maintains annual Form 1120-S statistics and describes S corporations as the most prevalent corporate form.",
+      "IRS filing statistics report 5,266,702 S-corporation returns for tax year 2022.",
       "AdvanceTrack's 2026 Accounting Talent Index reports that 73% of surveyed accounting firms are turning away potential clients because of talent shortages.",
       "The same survey reports that only 16% are actively investing in AI, which points to an operations gap but does not prove demand for this exact product.",
     ],
@@ -368,14 +368,14 @@ const opportunityDrafts = [
     ],
     sources: [
       {
-        title: "SOI Tax Stats: S Corporation Statistics",
+        title: "Statistics of Income: Corporation Returns, Tax Year 2022",
         publisher: "Internal Revenue Service",
-        url: "https://www.irs.gov/statistics/soi-tax-stats-s-corporation-statistics",
-        published: "Updated 2026",
+        url: "https://www.irs.gov/pub/irs-pdf/p5108.pdf",
+        published: "Revised September 2025",
         checked: "August 13, 2026",
         sourceType: "Official source",
         supports:
-          "The existence, prevalence, and annual statistical reporting of Form 1120-S corporations.",
+          "The reported count of 5,266,702 S-corporation returns for tax year 2022.",
       },
       {
         title: "2026 Global Accounting Talent Index",

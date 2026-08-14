@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import type { CSSProperties, ReactNode } from "react";
 
 import { siteConfig } from "@/config/site";
+import { getSiteUrl } from "@/config/urls";
 
 import "./globals.css";
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+const siteUrl = getSiteUrl();
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

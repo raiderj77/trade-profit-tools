@@ -12,7 +12,7 @@
 - Calculator price: $1,000.
 - Deposit: $500.
 - Delivery: five business days.
-- Acquisition channel: personal cold email.
+- Proposed acquisition channel after owner approval: small-batch, individually researched business email.
 - Framework: Next.js App Router with TypeScript.
 - Styling: dependency-free global CSS.
 - Hosting: Vercel.
@@ -30,6 +30,8 @@
 
 ## Deferred
 
+- Sending outreach or follow-ups.
+- Requesting deposits or activating a public payment link.
 - Final contact email.
 - Stripe Payment Link.
 - Resend sender verification.

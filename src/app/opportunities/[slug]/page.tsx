@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { OpportunityScorecard } from "@/components/OpportunityScorecard";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import { getSiteUrl } from "@/config/urls";
 import {
   getOpportunity,
   opportunities,
@@ -59,7 +60,7 @@ export default async function OpportunityDetailPage({
     notFound();
   }
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+  const siteUrl = getSiteUrl();
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Article",

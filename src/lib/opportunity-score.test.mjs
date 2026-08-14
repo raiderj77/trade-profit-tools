@@ -43,7 +43,8 @@ test("accepts every score at the upper boundary", () => {
 });
 
 test("rejects missing score dimensions", () => {
-  const { legalEthicalSafety: _removed, ...incompleteScores } = strongScores;
+  const incompleteScores = { ...strongScores };
+  delete incompleteScores.legalEthicalSafety;
 
   assert.throws(
     () => calculateOpportunityScore(incompleteScores),

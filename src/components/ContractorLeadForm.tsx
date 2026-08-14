@@ -1,7 +1,7 @@
 "use client";
 
 import type { FormEvent } from "react";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import type { CalculatorInputs } from "@/lib/calculator.mjs";
 
@@ -15,11 +15,15 @@ interface FormState {
 }
 
 export function ContractorLeadForm({ inputs }: ContractorLeadFormProps) {
-  const startedAt = useRef(Date.now());
+  const startedAt = useRef(0);
   const [state, setState] = useState<FormState>({
     status: "idle",
     message: "",
   });
+
+  useEffect(() => {
+    startedAt.current = Date.now();
+  }, []);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
