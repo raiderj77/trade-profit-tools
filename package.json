@@ -2,6 +2,7 @@
   "name": "yfd-home-service-lead-calculator",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "npm@10.9.3",
   "description": "Your Friendly Developer home-service calculator and source-backed Opportunity Lab.",
   "engines": {
     "node": ">=20.9.0"

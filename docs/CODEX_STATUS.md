@@ -16,6 +16,8 @@ The calculator is code-complete and live at `https://calculator.yourfriendlydeve
 - The downloaded archive passed `git fsck --full`; the clean `npm ci`, 26-test suite, strict TypeScript check, zero-warning ESLint run, 15-route production build, and local browser QA all passed before reconciliation with the newer production branch.
 - Pull request: `https://github.com/raiderj77/trade-profit-tools/pull/6`.
 - The Vercel preview check passed before GitHub identified that the branch needed the newer production commits merged into it.
+- Merged the current production branch without rebasing or force-pushing, preserved the production form-availability and origin controls, and expanded the combined suite to 36 passing tests.
+- The first reconciled GitHub Actions run exposed an npm 11 versus npm 10 lockfile mismatch involving optional native dependencies. Regenerated the lockfile with npm 10.9.3, added an explicit `packageManager` declaration, and verified clean install, all checks, and the audit with that npm version.
 
 ## Local launch-hardening recheck, August 12, 2026
 
