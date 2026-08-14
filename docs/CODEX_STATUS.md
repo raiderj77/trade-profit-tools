@@ -22,6 +22,11 @@ The calculator is code-complete and live at `https://calculator.yourfriendlydeve
 - Vercel preview deployment `dpl_DvcjNEn54mnd9b1gnGbXCNNH3e4S` reached Ready. The calculator, privacy page, Opportunity Lab index, methodology, and all four briefs rendered from that exact deployment; the production-safe preview contained zero lead forms while Resend remains unconfigured.
 - Pull request 6 merged to `main` as `1f9f5c6`; GitHub Actions run `31767918099` passed and production deployment `dpl_2oi4pfLAr5PurLd7nuCTTVaVi1fs` reached Ready.
 - Production browser QA found the four footer links exceeded the effective 305-pixel content viewport on 320-pixel Chrome, creating horizontal scrolling on pages with the shared footer. A focused follow-up makes those links wrap while preserving the existing desktop layout.
+- Pull request 7 merged the footer correction to `main` as `2c904f5`; GitHub Actions run `31768197785` passed and production deployment `dpl_7HVhXqGRh2pMYNLodga5fFPoVKMh` reached Ready.
+- Rechecked the custom hostname after that deployment. The homepage, demo, embed, privacy page, Opportunity Lab index, methodology, all four briefs, robots, and sitemap return HTTP 200. Non-embed pages deny framing, the embed remains frameable, and HSTS remains present.
+- Rechecked the 320-pixel production layout with all four production footer links, including Contact. The document client and scroll widths both equal 305 pixels on the homepage, Lab index, and first brief, so horizontal overflow is resolved.
+- Rechecked live calculator behavior at 375 pixels: changing monthly website leads from 40 to 100 updates estimated monthly booked revenue from `$37,066` to `$63,796` without overflow.
+- Production still renders zero lead forms while Resend is unconfigured. A missing-origin lead request returns HTTP 403 with `Cache-Control: no-store`. The site emitted no console warning or error; the only captured warning came from the browser extension rather than the application.
 
 ## Local launch-hardening recheck, August 12, 2026
 
