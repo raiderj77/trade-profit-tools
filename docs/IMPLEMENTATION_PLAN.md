@@ -2,7 +2,7 @@
 
 ## Phase 0, foundation
 
-Status: included in starter package.
+Status: included.
 
 - Next.js App Router project.
 - TypeScript strict mode.
@@ -11,7 +11,7 @@ Status: included in starter package.
 - Product documents and scope rules.
 - Your Friendly Developer brand and domain plan.
 
-## Phase 1, sellable MVP
+## Phase 1, sellable calculator MVP
 
 Status: included, locally hardened, and verified with installed dependencies.
 
@@ -26,17 +26,34 @@ Status: included, locally hardened, and verified with installed dependencies.
 - Privacy page.
 - Sitemap and robots rules.
 
+## Phase 1A, Opportunity Lab V1
+
+Status: implemented locally on August 13, 2026.
+
+- Opportunity index.
+- Opportunity detail pages.
+- Methodology page.
+- Ten-dimension score module.
+- Scoring tests.
+- Four original starter briefs.
+- Source records with checked dates.
+- Red-flag and proof-gate sections.
+- Homepage preview and navigation.
+- Sitemap coverage.
+- Manual, human-reviewed content workflow.
+
 ## Phase 2, verification and deployment
 
 Codex tasks:
 
-1. Push the verified `main` branch and committed `package-lock.json`.
-2. Confirm the full GitHub Actions check passes.
-3. Add the owner-confirmed contact, payment, and Resend configuration.
-4. Test Resend delivery with a verified sender.
-5. Create a separate Vercel project and verify a generated deployment URL.
-6. Connect only `calculator.yourfriendlydeveloper.com` after explicit domain and DNS authorization.
-7. Complete live production QA and update `docs/CODEX_STATUS.md`.
+1. Keep the verified calculator release healthy on the existing Vercel project
+   and `calculator.yourfriendlydeveloper.com`.
+2. Publish Opportunity Lab through the existing GitHub and Vercel path.
+3. Confirm the full GitHub Actions and Vercel checks pass.
+4. Complete production QA on the calculator and Opportunity Lab routes.
+5. Add only owner-confirmed payment and Resend configuration.
+6. Test real Resend delivery with a verified sender before enabling forms.
+7. Update `docs/CODEX_STATUS.md` with verified production evidence.
 
 Jason tasks:
 
@@ -73,4 +90,11 @@ Only after repeated buyer requests:
 - Agency analytics event hooks.
 - Additional result explanations.
 
-Each addition requires evidence from paid buyers. Do not build a self-service SaaS until manual installs sell repeatedly.
+Only after the Lab produces measurable business value:
+
+- More manually reviewed briefs.
+- A consent-based email digest.
+- A lightweight research intake form.
+- Read-only agent assistance for source collection and contradiction checks.
+
+Do not build a self-service SaaS, autonomous publishing system, or live scraping platform until manual work sells repeatedly.

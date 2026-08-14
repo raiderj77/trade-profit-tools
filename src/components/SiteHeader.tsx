@@ -9,7 +9,7 @@ export function SiteHeader() {
         <Link
           className="brand"
           href="/"
-          aria-label={`${siteConfig.business.name} calculator home`}
+          aria-label={`${siteConfig.business.name} home`}
         >
           <span className="brand-mark" aria-hidden="true">
             {siteConfig.business.shortName}
@@ -20,6 +20,7 @@ export function SiteHeader() {
           <Link href="/#package">Package</Link>
           <Link href="/demo">Live demo</Link>
           <Link href="/#preview">Branded preview</Link>
+          <Link href="/opportunities">Opportunity Lab</Link>
         </nav>
       </div>
     </header>

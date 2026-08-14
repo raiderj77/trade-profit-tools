@@ -3,16 +3,18 @@
 ## Recommended production addresses
 
 - Main website: `https://yourfriendlydeveloper.com`
-- Calculator project: `https://calculator.yourfriendlydeveloper.com`
+- Application: `https://calculator.yourfriendlydeveloper.com`
+- Opportunity Lab: `https://calculator.yourfriendlydeveloper.com/opportunities`
 
-The calculator should begin as a separate Vercel project. This prevents the MVP from breaking or depending on the current main website.
+The application should begin as a separate Vercel project. This prevents it from breaking or depending on the current main website.
 
 ## Before deployment
 
 1. Run `npm run check`.
 2. Commit `package-lock.json`.
 3. Push the repository to GitHub.
-4. Import the repository into Vercel.
+4. Confirm GitHub Actions passes.
+5. Import the repository into Vercel.
 
 ## Environment variables
 
@@ -46,14 +48,24 @@ missing Stripe Payment Link similarly omits the deposit button.
 6. Set `LEAD_TO_EMAIL` to the inbox Jason checks.
 7. Send test submissions from `/` and `/demo`.
 
+Opportunity Lab does not need an email provider unless a consent-based digest is added later.
+
 ## Subdomain setup
 
 1. Add `calculator.yourfriendlydeveloper.com` in the Vercel project.
 2. Use the exact DNS record Vercel displays.
 3. Add the record through the current DNS provider.
 4. Set `NEXT_PUBLIC_SITE_URL` to the full HTTPS origin.
-5. Redeploy so the sitemap and metadata use the final origin.
-6. Add a link from the main website to the calculator sales page.
+5. Redeploy so the sitemap, structured data, and metadata use the final origin.
+6. Add a link from the main website after production QA passes.
+
+## Optional Lab alias
+
+After the main application works, optionally redirect:
+
+`lab.yourfriendlydeveloper.com` to `https://calculator.yourfriendlydeveloper.com/opportunities`
+
+Do this through Vercel or DNS-provider redirect settings when available. Do not add application complexity for an optional alias.
 
 ## Verified Vercel preparation state
 
@@ -125,11 +137,7 @@ Leave the apex A record, `www` CNAME, and nameservers unchanged.
 
 Do not merge this repository into the current main site unless Codex receives the current website repository and verifies the framework and deployment process.
 
-When those files are available, Codex may assess a route such as:
-
-`https://yourfriendlydeveloper.com/home-service-lead-calculator`
-
-The separate subdomain remains the default launch path.
+The separate application subdomain remains the default launch path.
 
 ## Embed code
 
@@ -150,7 +158,9 @@ Adjust the height after testing on the customer website.
 
 ## Post-deployment test
 
-- Open all four public routes.
+- Open `/`, `/demo`, `/embed`, `/privacy`, `/opportunities`, and `/opportunities/methodology`.
+- Open every opportunity detail page.
+- Confirm every source link opens the intended source.
 - Submit both forms.
 - Confirm email delivery.
 - Test the embed on a separate origin.
@@ -159,3 +169,5 @@ Adjust the height after testing on the customer website.
 - Confirm the Your Friendly Developer seller brand appears on the sales page.
 - Confirm the demo agency is clearly labeled as fictional.
 - Confirm no placeholder contact information remains.
+- Confirm the sitemap contains all opportunity pages.
+- Confirm no draft or unreviewed opportunity appears in production.

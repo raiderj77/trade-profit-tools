@@ -27,6 +27,7 @@ const nextConfig: NextConfig = {
       { source: "/", headers: frameDenyHeaders },
       { source: "/demo", headers: frameDenyHeaders },
       { source: "/privacy", headers: frameDenyHeaders },
+      { source: "/opportunities/:path*", headers: frameDenyHeaders },
     ];
   },
 };

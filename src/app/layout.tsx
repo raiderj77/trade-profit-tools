@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import type { CSSProperties, ReactNode } from "react";
 
 import { siteConfig } from "@/config/site";
+import { getSiteUrl } from "@/config/urls";
 
 import "./globals.css";
 
-const siteUrl = siteConfig.deployment.siteUrl;
+const siteUrl = getSiteUrl();
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

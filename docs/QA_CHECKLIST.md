@@ -5,6 +5,7 @@
 - Header links work.
 - Hero copy explains the offer in one screen.
 - Demo button opens `/demo`.
+- Opportunity Lab link opens `/opportunities`.
 - Price shows $1,000 total and $500 deposit.
 - Five-business-day delivery appears.
 - Payment button appears only when a payment link exists.
@@ -45,12 +46,41 @@
 - Fits inside an iframe without horizontal scrolling.
 - Form submission works inside the iframe.
 
+## Opportunity Lab index
+
+- Four reviewed briefs appear.
+- Verdict badges match the data.
+- Scores, startup assumptions, and first-payment assumptions display.
+- Cards remain readable at 320, 375, 768, 1024, and 1440 pixels.
+- Homepage preview links to the full Lab.
+- The methodology link works.
+
+## Opportunity detail pages
+
+- Every configured slug renders.
+- Unknown slugs return the not-found page.
+- Score total matches the ten dimensions.
+- Score meters expose accessible minimum, maximum, and current values.
+- Signal, why now, buyer, offer, validation test, proof gate, red flags, and build path appear.
+- Every source card shows publisher, source type, published date, and checked date.
+- Every source link opens the intended first-party or standards source.
+- Structured data uses the production origin after deployment.
+- Disclaimer separates research from professional advice.
+
+## Opportunity methodology
+
+- Score thresholds match the scoring module.
+- Human review and no-auto-publish rules appear.
+- Source policy forbids fabricated evidence.
+- Validation rules distinguish interest, evidence, and payment proof.
+
 ## Privacy
 
 - Contact email is correct.
 - Agency name is correct.
 - Data-use description matches production behavior.
 - No analytics or cookies are claimed when none exist.
+- Opportunity Lab does not claim to collect newsletter subscriptions.
 
 ## Technical
 
@@ -64,4 +94,6 @@
 - Production form email arrives.
 - Production rejects an unapproved browser origin.
 - API responses use `Cache-Control: no-store`.
+- Sitemap includes all public Lab pages.
+- Robots rules block `/api/` and `/embed` while allowing the Lab.
 - GitHub Actions verification passes on the published commit.

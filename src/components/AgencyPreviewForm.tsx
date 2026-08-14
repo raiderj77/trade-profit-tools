@@ -2,7 +2,6 @@
 
 import type { FormEvent } from "react";
 import { useEffect, useRef, useState } from "react";
-
 import { LeadFormUnavailable } from "./LeadFormUnavailable";
 
 interface FormState {

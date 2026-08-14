@@ -2,16 +2,20 @@
 
 ## Mission
 
-Ship one sellable white-label calculator under the existing Your Friendly Developer brand for small marketing agencies serving home-service businesses.
+Ship and maintain two connected assets under Your Friendly Developer:
 
-The first commercial goal is one $500 deposit. Product expansion comes after a paid customer requests it.
+1. A sellable white-label home-service lead calculator.
+2. A manually curated Opportunity Lab that turns sourced signals into small paid tests.
+
+The first commercial goal remains one $500 calculator deposit. Opportunity Lab must support trust and lead generation without replacing direct outreach or turning into a large software platform.
 
 ## Brand and domain
 
 - Seller: Your Friendly Developer.
 - Main website: `https://yourfriendlydeveloper.com`.
-- Recommended calculator deployment: `https://calculator.yourfriendlydeveloper.com`.
-- Do not purchase or propose another domain for this MVP.
+- Application deployment: `https://calculator.yourfriendlydeveloper.com`.
+- Opportunity Lab route: `/opportunities`.
+- Do not purchase or propose another domain for this phase.
 - Do not alter the existing main website unless its repository is supplied and an explicit integration task is given.
 
 ## Read first
@@ -19,11 +23,13 @@ The first commercial goal is one $500 deposit. Product expansion comes after a p
 1. `CODEX_START_HERE.md`
 2. `docs/DOMAIN_AND_BRAND.md`
 3. `docs/PRODUCT_BRIEF.md`
-4. `docs/FORMULAS.md`
-5. `docs/CODEX_TASKS.md`
-6. `docs/SECURITY_PRIVACY.md`
+4. `docs/OPPORTUNITY_LAB.md`
+5. `docs/OPPORTUNITY_AGENT_PIPELINE.md`
+6. `docs/FORMULAS.md`
+7. `docs/CODEX_TASKS.md`
+8. `docs/SECURITY_PRIVACY.md`
 
-## Non-negotiable scope
+## Required scope
 
 Build and maintain:
 
@@ -34,22 +40,31 @@ Build and maintain:
 - One-file white-label configuration.
 - Clear formulas and assumptions.
 - Accessible, responsive pages.
+- An Opportunity Lab index, detail pages, methodology page, score module, and source-backed data.
 
-Do not add:
+## Do not add without a new explicit task
 
 - User accounts.
 - A database.
-- A dashboard.
+- A customer dashboard.
 - Subscriptions.
-- AI features.
+- AI chat or automatic idea generation.
+- Autonomous publishing.
+- A live scraper or crawling service.
 - A CMS.
 - Agency self-service onboarding.
 - Analytics or session recording.
 - Multiple calculator templates.
 - Automated cold email.
 - A new product domain.
+- Paid membership for the Lab.
+- Newsletter infrastructure.
 
-## Product rules
+## External action gates
+
+Local verification and reversible code changes are allowed. Do not push, open a pull request, deploy, change domains or DNS, configure accounts or secrets, publish Opportunity Lab pages, send outreach, request payment, or activate pricing without Jason's explicit approval for that action.
+
+## Calculator rules
 
 - Never promise guaranteed revenue, leads, profit, or return on ad spend.
 - Label all outputs as estimates.
@@ -61,15 +76,28 @@ Do not add:
 - Do not persist submissions in the application.
 - Preserve the `/embed` route for iframe use.
 
+## Opportunity Lab rules
+
+- Publish original wording. Do not copy another publisher's newsletter, graphics, page structure, or paid research.
+- Support every material factual claim with a linked source.
+- Record published and checked dates.
+- Prefer government data, standards bodies, original surveys, official documentation, and first-party research.
+- Label pricing, positioning, and revenue scenarios as assumptions unless a source supports them.
+- Keep red flags and stop rules visible.
+- Treat the score as a decision filter, not a probability or forecast.
+- Do not publish agent-generated research without human review.
+- Do not present legal, tax, accounting, medical, investment, or security guidance as an unqualified product.
+- Add or update scoring tests when score behavior changes.
+
 ## Engineering rules
 
 - Prefer the smallest reliable change.
 - Do not refactor unrelated code.
 - Keep components readable and focused.
 - Use semantic HTML and keyboard-friendly controls.
-- Add or update tests for formula changes.
+- Add or update tests for formula, validation, or scoring changes.
 - Run `npm run check` before declaring work complete.
-- Fix errors rather than weakening TypeScript, lint, or tests.
+- Fix errors rather than weakening TypeScript, lint, tests, or source standards.
 - Do not add a dependency when platform APIs solve the task cleanly.
 
 ## Completion report
@@ -80,6 +108,7 @@ After each assigned task, update `docs/CODEX_STATUS.md` with:
 - Files changed.
 - Commands run.
 - Test and build results.
+- Source-review status for new briefs.
 - Remaining blockers.
 - The next smallest task.
 

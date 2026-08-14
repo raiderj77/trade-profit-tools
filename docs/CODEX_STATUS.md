@@ -2,7 +2,24 @@
 
 ## Current state
 
-The calculator is code-complete and live at `https://calculator.yourfriendlydeveloper.com` through its isolated Vercel project while payment and Resend remain unconfigured. The production build omits both public lead forms unless every required Resend delivery value is present, omits the deposit button while no Stripe Payment Link exists, and provides `jason@yourfriendlydeveloper.com` as the fallback. The release is merged to GitHub `main`, the latest production deployment is Ready, and a narrowly scoped Vercel WAF rule protects the lead endpoint.
+The calculator is code-complete and live at `https://calculator.yourfriendlydeveloper.com` through its isolated Vercel project while payment and Resend remain unconfigured. The production build omits both public lead forms unless every required Resend delivery value is present, omits the deposit button while no Stripe Payment Link exists, and provides `jason@yourfriendlydeveloper.com` as the fallback. The current production release is on GitHub `main`, the latest deployment is Ready, and a narrowly scoped Vercel WAF rule protects the lead endpoint. Opportunity Lab is implemented on pull request 6 and is being reconciled with the current production branch before release.
+
+## Opportunity Lab release, August 13, 2026
+
+- Added the Opportunity Lab index, methodology, four original source-backed briefs, ten-dimension scoring, proof gates, red flags, staged build paths, navigation, and sitemap coverage.
+- Rechecked the linked Invoca, Jobber, IRS, AdvanceTrack, NIST, and OWASP source claims; corrected overstated Jobber and IRS wording.
+- Upgraded Next.js and `eslint-config-next` to 16.3.1 and cleared the dependency audit.
+- Added a validated production URL helper so metadata, robots, sitemap, and Open Graph output cannot fall back to localhost.
+- Restored useful navigation at 320 and 375 CSS pixels without horizontal overflow.
+- Reduced GitHub Actions permissions to read-only and retained deterministic `npm ci` installation.
+- Added explicit owner-approval gates for external publication, deployment, DNS, accounts, credentials, outreach, and payment actions.
+- The downloaded archive passed `git fsck --full`; the clean `npm ci`, 26-test suite, strict TypeScript check, zero-warning ESLint run, 15-route production build, and local browser QA all passed before reconciliation with the newer production branch.
+- Pull request: `https://github.com/raiderj77/trade-profit-tools/pull/6`.
+- The Vercel preview check passed before GitHub identified that the branch needed the newer production commits merged into it.
+- Merged the current production branch without rebasing or force-pushing, preserved the production form-availability and origin controls, and expanded the combined suite to 36 passing tests.
+- The first reconciled GitHub Actions run exposed an npm 11 versus npm 10 lockfile mismatch involving optional native dependencies. Regenerated the lockfile with npm 10.9.3, added an explicit `packageManager` declaration, and verified clean install, all checks, and the audit with that npm version.
+- GitHub Actions run `31767735815` passed the clean install and full combined check on commit `85eee18`.
+- Vercel preview deployment `dpl_DvcjNEn54mnd9b1gnGbXCNNH3e4S` reached Ready. The calculator, privacy page, Opportunity Lab index, methodology, and all four briefs rendered from that exact deployment; the production-safe preview contained zero lead forms while Resend remains unconfigured.
 
 ## Local launch-hardening recheck, August 12, 2026
 

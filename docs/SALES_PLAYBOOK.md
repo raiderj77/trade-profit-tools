@@ -1,5 +1,7 @@
 # 90-day sales playbook
 
+Status: draft only. This document does not authorize outreach, follow-ups, payment requests, or account changes. Jason must explicitly approve the list, message, mailbox, and start of sending.
+
 ## Target
 
 - First $500 deposit within 14 days.

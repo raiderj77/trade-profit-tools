@@ -10,6 +10,13 @@ export const siteConfig = {
     mainSiteUrl:
       process.env.NEXT_PUBLIC_MAIN_SITE_URL ?? "https://yourfriendlydeveloper.com",
     contactEmail: process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "",
+    description:
+      "Small, useful web tools and sourced opportunity research built around paid proof.",
+  },
+  opportunityLab: {
+    name: "Opportunity Lab",
+    description:
+      "Sourced trends turned into scored, testable business offers with honest red flags.",
   },
   product: {
     name: "Home-Service Lead Value Calculator",

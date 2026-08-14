@@ -8,9 +8,10 @@ export function SiteFooter() {
       <div className="container footer-inner">
         <div>
           <strong>{siteConfig.business.name}</strong>
-          <p>{siteConfig.product.description}</p>
+          <p>{siteConfig.business.description}</p>
         </div>
         <div className="footer-links">
+          <Link href="/opportunities">Opportunity Lab</Link>
           <Link href="/privacy">Privacy</Link>
           <a href={siteConfig.business.mainSiteUrl}>Main website</a>
           {siteConfig.business.contactEmail ? (
