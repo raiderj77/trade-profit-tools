@@ -13,7 +13,6 @@ export function SiteFooter() {
         <div className="footer-links">
           <Link href="/opportunities">Opportunity Lab</Link>
           <Link href="/privacy">Privacy</Link>
-          <a href={siteConfig.business.mainSiteUrl}>Main website</a>
           {siteConfig.business.contactEmail ? (
             <a href={`mailto:${siteConfig.business.contactEmail}`}>Contact</a>
           ) : null}
