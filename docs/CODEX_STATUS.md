@@ -1,5 +1,12 @@
 # Codex status
 
+## Cross-site link removal, September 7, 2026
+
+- Removed the shared footer's outbound Main website link for the owner's portfolio-wide backlink cleanup. Opportunity Lab, Privacy, and configured email contact remain available.
+- Changed `src/components/SiteFooter.tsx`; calculator formulas, forms, source citations, and provider configuration are unchanged.
+- `npm run check` passed: 36 tests, route types, TypeScript, ESLint, and the production build. No new research briefs or source claims were introduced.
+- Release-stage evidence is recorded in the removal pull request. The prior recommendation to add cross-site promotion in `docs/DOMAIN_AND_BRAND.md` is superseded by this owner instruction.
+
 ## Current state
 
 The calculator is code-complete and live at `https://calculator.yourfriendlydeveloper.com` through its isolated Vercel project while payment and Resend remain unconfigured. The production build omits both public lead forms unless every required Resend delivery value is present, omits the deposit button while no Stripe Payment Link exists, and provides `jason@yourfriendlydeveloper.com` as the fallback. The current production release is on GitHub `main`, the latest deployment is Ready, and a narrowly scoped Vercel WAF rule protects the lead endpoint. Opportunity Lab is implemented on pull request 6 and is being reconciled with the current production branch before release.
