@@ -121,7 +121,7 @@ const opportunityDrafts = [
     estimatedStartupCost: "$0 to $50",
     estimatedFirstPayment: "7 to 14 days",
     contactLevel: "Low",
-    businessModel: "$1,000 fixed build with a $500 deposit",
+    businessModel: "$1,000 fixed build with a $250 deposit",
     scores: {
       speedToPayment: 9,
       buyerReachability: 9,
@@ -157,14 +157,15 @@ const opportunityDrafts = [
     ],
     offer: [
       "$1,000 total price.",
-      "$500 deposit before custom work.",
+      "$250 deposit before custom work.",
+      "$750 after installation.",
       "Five-business-day delivery.",
       "No monthly platform fee.",
     ],
     validationPlan: [
       "Choose 40 agencies with visible home-service clients.",
       "Send 10 personal emails per weekday with a 45-second branded preview offer.",
-      "Ask interested agencies for the $500 deposit before changing the demo for them.",
+      "Ask interested agencies for the $250 deposit before changing the demo for them.",
       "Do not add dashboards, accounts, subscriptions, or extra calculator types during the test.",
     ],
     proofGate:

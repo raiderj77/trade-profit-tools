@@ -71,8 +71,8 @@ Founding package:
 Price:
 
 - $1,000 total.
-- $500 deposit before custom work.
-- $500 after installation.
+- $250 deposit before custom work.
+- $750 after installation.
 
 ## Core promise
 
