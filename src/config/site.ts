@@ -35,7 +35,7 @@ export const siteConfig = {
   },
   offer: {
     totalPrice: 1000,
-    deposit: 500,
+    deposit: 250,
     deliveryBusinessDays: 5,
     revisions: 1,
   },

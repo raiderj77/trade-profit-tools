@@ -147,7 +147,7 @@ export default function HomePage() {
               <p className="eyebrow light">Founding package</p>
               <h2>A fixed build, not another monthly software bill.</h2>
               <p>
-                Pay half to begin. Pay the balance after installation and the included revision.
+                Pay the deposit to begin. Pay the balance after installation and the included revision.
               </p>
             </div>
             <div className="price-card">
