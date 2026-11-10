@@ -70,7 +70,7 @@ export default function TeardownArticlePage() {
           </p>
           <p>
             <strong>Try the thing this article is about:</strong> the live demo
-            is running at <Link href="/demo">tradeprofittools.com</Link>. Run
+            is running here: <Link href="/demo">open the live demo</Link>. Run
             your own numbers through it before you read the teardown.
           </p>
 
@@ -201,7 +201,7 @@ export default function TeardownArticlePage() {
           </p>
           <p>
             <strong>Run the demo with a client&apos;s real numbers:</strong>{" "}
-            <Link href="/demo">tradeprofittools.com</Link>. The markup and
+            <Link href="/demo">open the live demo</Link>. The markup and
             margin gap shows up in about thirty seconds of typing.
           </p>
 
