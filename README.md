@@ -23,8 +23,8 @@ The calculator estimates:
 Commercial package:
 
 - $1,000 total.
-- $500 deposit.
-- $500 after installation.
+- $250 deposit.
+- $750 after installation.
 - Five-business-day delivery.
 - One revision.
 - Source-code ownership for the buyer.

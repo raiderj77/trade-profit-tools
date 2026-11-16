@@ -7,7 +7,7 @@ Ship and maintain two connected assets under Your Friendly Developer:
 1. A sellable white-label home-service lead calculator.
 2. A manually curated Opportunity Lab that turns sourced signals into small paid tests.
 
-The first commercial goal remains one $500 calculator deposit. Opportunity Lab must support trust and lead generation without replacing direct outreach or turning into a large software platform.
+The first commercial goal remains one $250 calculator deposit. Opportunity Lab must support trust and lead generation without replacing direct outreach or turning into a large software platform.
 
 ## Brand and domain
 

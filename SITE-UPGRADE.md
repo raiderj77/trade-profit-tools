@@ -11,7 +11,7 @@ Site: Trade Profit Tools
 Live URL: VERIFY IN PHASE 0 — repo README names no live domain, and a 2026-11-10 commit corrected a wrong tradeprofittools.com reference. Prove the live URL from the repo/Vercel before any other work.
 Repo: raiderj77/trade-profit-tools
 Top competitor to beat: VERIFY IN PHASE 0 — name the top agency lead-value / ROI calculator competitor with evidence
-Primary money action: Sell the $1,000 white-label lead-value calculator install to small marketing agencies serving home-service companies. PRICE CONFLICT — DO NOT TOUCH PRICES: repo README states $500 deposit + $500 after; Dottie's 2026-11-08 plan states $250 deposit + $750 after and the $250 product was in progress, not verified. Report the conflict in Phase 0 and let Jason decide. Gate: one real deposit before any custom work, no new features without payment.
+Primary money action: Sell the $1,000 white-label lead-value calculator install to small marketing agencies serving home-service companies. PRICE (Jason confirmed 2026-11-15): $250 deposit + $750 after installation, matching src/config/site.ts and docs/PRODUCT_BRIEF.md. Gate: one real deposit before any custom work, no new features without payment.
 Primary keyword / money page: lead value calculator for home service companies / marketing agencies — calculator page
 
 You are upgrading this site to get more traffic and more revenue, in that order.
@@ -27,7 +27,7 @@ OUR STANDING RULES (override any generic advice you find):
 - Article Checklist (2026-10-29) applies to every article, guide, comparison, and tool page: keyword congruence, real author + dates, answer-first, clear definition, methodology, best-for / not-for framing, quantitative HTML comparison table, original evidence, how-to-choose, objection handling, true proof only, 2-3 sentence FAQs, at least 3 intent-matched CTAs. Add the checklist sign-off line to every PR.
 - Cash register rule: done means verified LIVE where the customer or money touches it — production page serving the change, checkout / form / affiliate link rendering and clicking through. A build, a merge, or a preview is not done.
 - Free tools stay free: never gate, paywall, or degrade a free calculator/tool to sell an add-on.
-- Gates you must NOT cross without Jason's explicit word: spending, price changes, account creation, sends/publishes beyond the approved lane, TaxBreakTools CPA Gate 1, MindCheckTools attorney review before paid launch.
+- Gates you must NOT cross without Jason's explicit word: spending, price changes, account creation, sends/publishes beyond the approved lane, TaxBreakTools CPA Gate 1, MindCheckTools attorney review before paid launch. THIS REPO'S AGENTS.md also bars adding analytics or session recording, and newsletter/email-list infrastructure, without a new explicit task from Jason — the generic phases below do NOT authorize either.
 - One consolidated list of Jason's remaining steps at the end. Nothing scattered.
 
 UPSTREAM WATCH — CHECK FOR UPDATES AS WE GO (owner instruction, 2026-11-15):
@@ -78,7 +78,7 @@ PHASE 6 — CRO / CONVERSION (cash register)
 - Primary CTA above the fold on homepage and money pages, repeated after value sections.
 - Trust without fabrication: real disclosures, real contact/domain email, no fake testimonials, counts, or badges.
 - Checkout / lead path clicked end to end in production (test mode only for payments). A broken checkout outranks every other fix.
-- Email capture: one clear offer, one list, form proven sending.
+- Email capture: DO NOT BUILD without Jason's separate explicit task (this repo's AGENTS.md bars newsletter infrastructure). Only if he authorizes it: one clear offer, one list, form proven sending.
 
 PHASE 7 — PERFORMANCE / CORE WEB VITALS
 - Targets: LCP under 2.5s, INP under 200ms, CLS under 0.1 on mobile, homepage + money page.
@@ -90,7 +90,7 @@ PHASE 8 — ACCESSIBILITY (WCAG 2.2 AA)
 
 PHASE 9 — SECURITY, ANALYTICS, HOUSEKEEPING
 - HTTPS everywhere, no secrets in code, critical/high dependency vulns fixed.
-- Analytics + Search Console verified firing on production (subject to this site's privacy rules below).
+- Analytics: DO NOT ADD or install without Jason's separate explicit task (this repo's AGENTS.md bars analytics and session recording). Search Console setup or changes are an account action and also need Jason's word first.
 - Helpful 404 page, redirects for moved URLs, no redirect chains over 2 hops.
 
 OUTPUT — deliver exactly this:
