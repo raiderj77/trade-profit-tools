@@ -15,12 +15,20 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.business.name}`,
   },
   description: siteConfig.product.description,
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml", sizes: "any" },
+      { url: "/favicon-512.png", type: "image/png", sizes: "512x512" },
+    ],
+    apple: { url: "/favicon-180.png", sizes: "180x180" },
+  },
   openGraph: {
     title: `${siteConfig.product.name} | ${siteConfig.business.name}`,
     description: siteConfig.product.description,
     type: "website",
     url: siteUrl,
     siteName: siteConfig.business.name,
+    images: [siteConfig.openGraphImage],
   },
 };
 
