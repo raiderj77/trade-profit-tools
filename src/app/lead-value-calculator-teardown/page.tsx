@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import { siteConfig } from "@/config/site";
 import { getSiteUrl } from "@/config/urls";
 
 const SLUG = "lead-value-calculator-teardown";
@@ -25,6 +26,7 @@ export const metadata: Metadata = {
     publishedTime: "2026-11-10",
     modifiedTime: "2026-11-10",
     authors: ["Jason Ramirez"],
+    images: [siteConfig.openGraphImage],
   },
 };
 

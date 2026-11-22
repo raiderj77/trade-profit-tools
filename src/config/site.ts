@@ -1,4 +1,10 @@
 export const siteConfig = {
+  openGraphImage: {
+    url: "/og-image.png",
+    width: 1200,
+    height: 630,
+    alt: "Trade Profit Tools",
+  },
   deployment: {
     siteUrl:
       process.env.NEXT_PUBLIC_SITE_URL ??

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import { siteConfig } from "@/config/site";
@@ -11,9 +12,7 @@ export function SiteHeader() {
           href="/"
           aria-label={`${siteConfig.business.name} home`}
         >
-          <span className="brand-mark" aria-hidden="true">
-            {siteConfig.business.shortName}
-          </span>
+          <Image src="/logo-mark.svg" alt="" width={38} height={38} unoptimized />
           <span>{siteConfig.business.name}</span>
         </Link>
         <nav className="main-nav" aria-label="Main navigation">
